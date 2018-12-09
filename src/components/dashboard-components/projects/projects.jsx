@@ -10,7 +10,6 @@ import {
 	CardSubtitle,
 	Input,
 	Table,
-	Tooltip
 } from 'reactstrap';
 
 class Projects extends React.Component {
@@ -21,14 +20,18 @@ class Projects extends React.Component {
 		}
 	}
 
-	async componentDidMount(){
-		await get(EVENT_GET_ALL, 
-			{}, 
-			{'Authorization': 'Bearer ' + LocalStorageUtils.getItem(LOCAL_STORAGE_KEY.JWT)})
+	async componentDidMount() {
+		console.log(LocalStorageUtils.getItem(LOCAL_STORAGE_KEY.JWT));
+		await get(EVENT_GET_ALL,
+			{},
+			{ 'Authorization': 'Bearer ' + LocalStorageUtils.getItem(LOCAL_STORAGE_KEY.JWT) })
 			.then(res => {
 				this.setState({
 					data: res.data
 				});
+				if (this.state.data.length === 0) {
+					alert("Data is empty")
+				}
 			})
 
 	}
@@ -88,7 +91,7 @@ class Projects extends React.Component {
 											{data.location}
 										</td>
 										<td>
-											<button onClick ={ () => this.ViewRequestJoin(data.eventId)}>
+											<button onClick={() => this.ViewRequestJoin(data.eventId)}>
 												View request join
 											</button>
 										</td>

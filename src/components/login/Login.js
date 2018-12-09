@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-
 import { post } from "../../utils/ApiCaller";
 import { AUTH__LOGIN } from "../../utils/ApiEndpoint";
 import LocalStorageUtils, { LOCAL_STORAGE_KEY } from "../../utils/LocalStorage";
@@ -11,8 +10,10 @@ const FormItem = Form.Item;
 
 class LoginForm extends Component {
     componentDidMount() {
-        if (LocalStorageUtils.isAuthenticated()) {
+        if (LocalStorageUtils.isRole() === "isAdmin") {
             this.props.history.push("/admin");
+        } else if(LocalStorageUtils.isRole() === "isUser"){
+            this.props.history.push("/user");
         }
     }
 
@@ -21,14 +22,17 @@ class LoginForm extends Component {
         this.props.form.validateFields((err, values) => {
             if (!err) {
                 this.onLogin(values.studentId, values.password, token => {
-                    console.log(token);
                     if (token) {
                         LocalStorageUtils.setItem(LOCAL_STORAGE_KEY.JWT, token);
                         LocalStorageUtils.setItem(
                             LOCAL_STORAGE_KEY.STUDENT_ID,
                             values.studentId
                         );
-                        this.props.history.push("/admin");
+                        if (LocalStorageUtils.isRole() === "isAdmin") {
+                            this.props.history.push("/admin");
+                        } else if(LocalStorageUtils.isRole() === "isUser"){
+                            this.props.history.push("/user");
+                        }
                     } else {
                         message.error("Thông tin đăng nhập không chính xác!");
                     }
@@ -43,7 +47,6 @@ class LoginForm extends Component {
             password,
         },{'Content-Type': 'application/x-www-form-urlencoded'})
             .then(res => {
-                console.log(res.headers);
                 cb(res.headers.authorization.replace("Bearer  ", ""));
             })
             .catch(err => {

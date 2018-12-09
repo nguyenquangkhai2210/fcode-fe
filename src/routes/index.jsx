@@ -1,9 +1,16 @@
 import Login from '../components/login/Login';
 import Fulllayout from '../layouts/fulllayout.jsx';
-import withAuthRouteComponent from "./withAuthRouteComponent";
+import UserPage from '../webUser/userPage.jsx';
+
+import withAdminRouteComponent from "./withAdminRouteComponent";
+import withUserRouteComponent from "./withUserRouteComponent";
 
 
-const withAuth = withAuthRouteComponent("/");
+
+const withAdmin = withAdminRouteComponent("/");
+
+const withUser = withUserRouteComponent("/");
+
 
 var indexRoutes = [
     { 
@@ -14,8 +21,12 @@ var indexRoutes = [
     { 
         path: '/admin', 
         name: 'Admin', 
-        component: withAuth(Fulllayout),
-        // component: Fulllayout,
+        component: withAdmin(Fulllayout),
+    },
+    { 
+        path: '/user', 
+        name: 'User', 
+        component: withUser(UserPage),
     },
     { path: '/', pathTo: '/login', name: 'Login', redirect: true }
 ];

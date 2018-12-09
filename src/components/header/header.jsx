@@ -1,7 +1,6 @@
 import React from 'react';
 import {
 	Nav,
-	NavItem,
 	Navbar,
 	NavbarBrand,
 	Collapse,
@@ -11,14 +10,13 @@ import {
 	DropdownToggle,
 	DropdownMenu
 } from 'reactstrap';
+import LocalStorageUtils from "../../utils/LocalStorage";
 
 import profilephoto from '../../assets/images/users/1.jpg';
 
 /*--------------------------------------------------------------------------------*/
 /* Import images which are need for the HEADER                                    */
 /*--------------------------------------------------------------------------------*/
-import logodarkicon from '../../assets/images/logo-icon.png';
-import logolighticon from '../../assets/images/logo-light-icon.png';
 import logodarktext from '../../assets/images/logo-text.png';
 import logolighttext from '../../assets/images/logo-light-text.png';
 
@@ -46,6 +44,11 @@ class Header extends React.Component {
 		document.getElementById('main-wrapper').classList.toggle('show-sidebar');
 	}
 
+	Logout = () =>{
+		LocalStorageUtils.clear();
+		window.location.reload();
+	}
+
 	render() {
 		return (
 			<header className="topbar navbarbg" data-navbarbg="skin1">
@@ -54,17 +57,9 @@ class Header extends React.Component {
 						{/*--------------------------------------------------------------------------------*/}
 						{/* Logos Or Icon will be goes here for Light Layout && Dark Layout                */}
 						{/*--------------------------------------------------------------------------------*/}
-						<NavbarBrand href="/">
-							<b className="logo-icon">
-								<img src={logodarkicon} alt="homepage" className="dark-logo" />
-								<img
-									src={logolighticon}
-									alt="homepage"
-									className="light-logo"
-								/>
-							</b>
-							<span className="logo-text">
-								<img src={logodarktext} alt="homepage" className="dark-logo" />
+						<NavbarBrand style={{textAlign: "center"}} href="/">
+							<span style={{width: "100%"}} className="logo-text">
+								<img style={{width: "50px"}} src={logodarktext} alt="homepage" className="dark-logo" />
 								<img
 									src={logolighttext}
 									className="light-logo"
@@ -81,9 +76,6 @@ class Header extends React.Component {
 					</div>
 					<Collapse className="navbarbg" isOpen={this.state.isOpen} navbar data-navbarbg="skin1" >
 						<Nav className="ml-auto float-right" navbar>
-							<NavItem>
-								<a href="" className="btn btn-danger mr-2" style={{ marginTop: '15px' }}>Upgrade to Pro</a>
-							</NavItem>
 							{/*--------------------------------------------------------------------------------*/}
 							{/* Start Profile Dropdown                                                         */}
 							{/*--------------------------------------------------------------------------------*/}
@@ -111,7 +103,7 @@ class Header extends React.Component {
 										<i className="ti-settings mr-1 ml-1" /> Account Settings
                   </DropdownItem>
 									<DropdownItem divider />
-									<DropdownItem href="/pages/login">
+									<DropdownItem onClick={() => this.Logout()}>
 										<i className="fa fa-power-off mr-1 ml-1" /> Logout
                   </DropdownItem>
 									<DropdownItem divider />

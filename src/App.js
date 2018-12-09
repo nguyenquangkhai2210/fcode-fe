@@ -6,7 +6,6 @@ import {
     Switch,
     Redirect,
 } from "react-router-dom";
-import { HashRouter } from 'react-router-dom';
 import NotFound from "./components/not-found/NotFound";
 
 import "./App.scss";

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import LocalStorageUtils from "../utils/LocalStorage";
 
-const withAuthRouteComponent = redirectUrl => Child =>
+const withAdminRouteComponent = redirectUrl => Child =>
     class RequireAuthorizedComponent extends Component {
         constructor() {
             super();
@@ -18,7 +18,7 @@ const withAuthRouteComponent = redirectUrl => Child =>
         }
         _renderIfAuthenticated = () => {
             const { props } = this;
-            if (LocalStorageUtils.isAuthenticated()) {
+            if (LocalStorageUtils.isRole() === "isAdmin") {
                 return <Child {...props} />;
             } else {
                 return <Redirect to={redirectUrl} />;
@@ -34,4 +34,4 @@ const withAuthRouteComponent = redirectUrl => Child =>
         }
     };
 
-export default withAuthRouteComponent;
+export default withAdminRouteComponent;

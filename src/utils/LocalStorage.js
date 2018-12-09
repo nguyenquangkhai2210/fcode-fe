@@ -1,4 +1,5 @@
 import uuidv4 from "uuid/v4";
+import JWT_Decode from "jwt-decode";
 
 export const LOCAL_STORAGE_KEY = {
     JWT: "fcode_jwt",
@@ -34,9 +35,18 @@ class LocalStorageUtils {
         }
     }
 
-    isAuthenticated() {
+    isRole() {
         const jwt = this.getItem(LOCAL_STORAGE_KEY.JWT);
-        return jwt && jwt !== "undefined";
+        
+        if(jwt !== undefined){
+            var decode = JWT_Decode(jwt);
+            if(decode.isAdmin){
+                return "isAdmin";
+            } else {
+                return "isUser";
+            }
+        }
+        return "isGuest" ;
     }
 
     getJWT() {

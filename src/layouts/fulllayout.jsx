@@ -3,8 +3,7 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-d
 import Header from '../components/header/header.jsx';
 import Sidebar from '../components/sidebar/sidebar.jsx';
 import Footer from '../components/footer/footer.jsx';
-import ThemeRoutes from '../routes/routing.jsx';
-import { HashRouter } from 'react-router-dom';
+import ThemeRoutes from '../routes/routingSlidebar.jsx';
 
 class Fulllayout extends React.Component {
 	/*--------------------------------------------------------------------------------*/
