@@ -7,7 +7,6 @@ import {
 	Card,
 	CardBody,
 	CardTitle,
-	CardSubtitle,
 	Input,
 	Table,
 } from 'reactstrap';
@@ -33,7 +32,6 @@ class Projects extends React.Component {
 					alert("Data is empty")
 				}
 			})
-
 	}
 
 	ViewRequestJoin = (eventID) => {
@@ -52,8 +50,7 @@ class Projects extends React.Component {
 				<CardBody>
 					<div className="d-flex align-items-center">
 						<div>
-							<CardTitle>Projects of the Month</CardTitle>
-							<CardSubtitle>Overview of Latest Month</CardSubtitle>
+							<CardTitle>Event in F-Code</CardTitle>
 						</div>
 						<div className="ml-auto d-flex no-block align-items-center">
 							<div className="dl">
@@ -91,12 +88,12 @@ class Projects extends React.Component {
 											{data.location}
 										</td>
 										<td>
-											<button onClick={() => this.ViewRequestJoin(data.eventId)}>
+											<button className="btn btn btn-outline-info" onClick={() => this.ViewRequestJoin(data.eventId)}>
 												View request join
 											</button>
 										</td>
 										<td>
-											<button>
+											<button className="btn btn btn-outline-info">
 												View attendance
 											</button>
 										</td>

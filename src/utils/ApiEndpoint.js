@@ -25,3 +25,4 @@ export const EVENT_GET_ALL = BASE_URL + "/event";
 export const EVENT_PENDING = BASE_URL + "/event/pending/";
 export const EVENT_APPROVE = BASE_URL + "/event/approve/";
 export const EVENT_REJECT = BASE_URL + "/event/reject/";
+export const EVENT_JOIN = BASE_URL + "/event/";

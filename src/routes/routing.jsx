@@ -6,7 +6,7 @@ var ThemeRoutes = [
   { 
     path: '/event', 
     name: 'Event', 
-    icon: 'ti-loop', 
+    icon: 'ti-location-pin', 
     component: Starter 
   },
   {

@@ -2,13 +2,13 @@ import React from 'react';
 import { get, put } from "../../utils/ApiCaller";
 import { EVENT_PENDING, EVENT_APPROVE, EVENT_REJECT } from "../../utils/ApiEndpoint";
 import LocalStorageUtils, { LOCAL_STORAGE_KEY } from "../../utils/LocalStorage";
-
 import {
 	Card,
 	CardBody,
 	CardTitle,
 	Table,
 	Input,
+	Alert
 } from 'reactstrap';
 
 class Alerts extends React.Component {
@@ -30,12 +30,11 @@ class Alerts extends React.Component {
 				this.setState({
 					data: res.data
 				});
-				if (this.state.data.length === 0) {
-					alert("Data is empty")
-				}
 			})
 
 	}
+
+
 
 	RemoveStudentInData = (accountEventId) => {
 		this.setState({
@@ -69,11 +68,10 @@ class Alerts extends React.Component {
 			{/*Card-1*/}
 			{/*--------------------------------------------------------------------------------*/}
 			<Card>
-				{console.log(this.state.data)}
 				<CardBody>
 					<div className="d-flex align-items-center">
 						<div>
-							<CardTitle>Projects of the Month</CardTitle>
+							<CardTitle>Pending Request of Event </CardTitle>
 						</div>
 						<div className="ml-auto d-flex no-block align-items-center">
 							<div className="dl">
@@ -97,7 +95,7 @@ class Alerts extends React.Component {
 							</tr>
 						</thead>
 						<tbody>
-							{
+							{	
 								this.state.data.map((data) => (
 									<tr key={data.account.studentId}>
 										<td>
@@ -107,12 +105,12 @@ class Alerts extends React.Component {
 											{data.account.name}
 										</td>
 										<td>
-											<button onClick={() => this.ApproveStudent(data.account.studentId, data.event.eventId, data.accountEvent)}>
+											<button className="btn btn btn-outline-success" onClick={() => this.ApproveStudent(data.account.studentId, data.event.eventId, data.accountEvent)}>
 												Approve
                                 </button>
 										</td>
 										<td>
-											<button onClick={() => this.RejectStudent(data.account.studentId, data.event.eventId, data.accountEvent)}>
+											<button className="btn btn btn-outline-danger" onClick={() => this.RejectStudent(data.account.studentId, data.event.eventId, data.accountEvent)}>
 												Reject
                                 </button>
 										</td>

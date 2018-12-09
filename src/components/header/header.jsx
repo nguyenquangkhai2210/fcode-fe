@@ -8,9 +8,9 @@ import {
 	Button,
 	UncontrolledDropdown,
 	DropdownToggle,
-	DropdownMenu
+	DropdownMenu,
 } from 'reactstrap';
-import LocalStorageUtils from "../../utils/LocalStorage";
+import LocalStorageUtils , { LOCAL_STORAGE_KEY } from "../../utils/LocalStorage";
 
 import profilephoto from '../../assets/images/users/1.jpg';
 
@@ -51,9 +51,9 @@ class Header extends React.Component {
 
 	render() {
 		return (
-			<header className="topbar navbarbg" data-navbarbg="skin1">
+			<header className="topbar navbarbg" >
 				<Navbar className="top-navbar" dark expand="md">
-					<div className="navbar-header" id="logobg" data-logobg="skin6">
+					<div className="navbar-header" id="logobg"  data-logobg="skin6">
 						{/*--------------------------------------------------------------------------------*/}
 						{/* Logos Or Icon will be goes here for Light Layout && Dark Layout                */}
 						{/*--------------------------------------------------------------------------------*/}
@@ -74,7 +74,7 @@ class Header extends React.Component {
 							<i className="ti-menu ti-close" />
 						</a>
 					</div>
-					<Collapse className="navbarbg" isOpen={this.state.isOpen} navbar data-navbarbg="skin1" >
+					<Collapse className="navbarbg" isOpen={this.state.isOpen} navbar >
 						<Nav className="ml-auto float-right" navbar>
 							{/*--------------------------------------------------------------------------------*/}
 							{/* Start Profile Dropdown                                                         */}
@@ -87,8 +87,11 @@ class Header extends React.Component {
 										className="rounded-circle"
 										width="31"
 									/>
+									<Button color="primary" className="ml-3" outline>
+									{LocalStorageUtils.getItem(LOCAL_STORAGE_KEY.STUDENT_ID)}
+									</Button>
 								</DropdownToggle>
-								<DropdownMenu right className="user-dd">
+								<DropdownMenu right>
 									<DropdownItem>
 										<i className="ti-user mr-1 ml-1" /> My Account
                   </DropdownItem>
@@ -106,13 +109,6 @@ class Header extends React.Component {
 									<DropdownItem onClick={() => this.Logout()}>
 										<i className="fa fa-power-off mr-1 ml-1" /> Logout
                   </DropdownItem>
-									<DropdownItem divider />
-									<Button
-										color="success"
-										className="btn-rounded ml-3 mb-2 mt-2"
-									>
-										View Profile
-                  </Button>
 								</DropdownMenu>
 							</UncontrolledDropdown>
 							{/*--------------------------------------------------------------------------------*/}

@@ -4,6 +4,8 @@ import Header from '../components/header/header.jsx';
 import Sidebar from '../components/sidebar/sidebar.jsx';
 import Footer from '../components/footer/footer.jsx';
 import ThemeRoutes from '../routes/routingSlidebar.jsx';
+import Routes from '../routes/routing.jsx';
+
 
 class Fulllayout extends React.Component {
 	/*--------------------------------------------------------------------------------*/
@@ -85,7 +87,7 @@ class Fulllayout extends React.Component {
 					<div className="page-wrapper d-block">
 						<div className="page-content container-fluid">
 							<Switch>
-								{ThemeRoutes.map((prop, key) => {
+								{Routes.map((prop, key) => {
 									if (prop.redirect) {
 										return <Redirect from={prop.path} to={prop.pathTo} key={key} />;
 									}
