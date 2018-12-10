@@ -1,6 +1,6 @@
 import React from "react";
 import { get } from "../../../utils/ApiCaller";
-import { EVENT_GET_ALL } from "../../../utils/ApiEndpoint";
+import { EVENT_GET_ALL, EVENT_PENDING } from "../../../utils/ApiEndpoint";
 import LocalStorageUtils, { LOCAL_STORAGE_KEY } from "../../../utils/LocalStorage";
 
 import {
@@ -34,9 +34,17 @@ class Projects extends React.Component {
 			})
 	}
 
-	ViewRequestJoin = (eventID) => {
-		console.log(eventID);
-		this.props.history.push(`/pending/${eventID}`);
+	ViewRequestJoin = async (eventID) => {
+		await get(EVENT_PENDING + eventID,
+			{},
+			{ 'Authorization': 'Bearer ' + LocalStorageUtils.getItem(LOCAL_STORAGE_KEY.JWT) })
+			.then(res => {
+				if (res.status) {
+					this.props.history.push(`/pending/${eventID}`);
+				}				console.log(res);	
+			}).catch((error) => {
+				alert("Event không có peding request");
+			});
 	}
 
 	render() {

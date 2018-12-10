@@ -40,6 +40,9 @@ class Alerts extends React.Component {
 		this.setState({
 			data: this.state.data.filter(data => data.accountEvent !== accountEventId)
 		})
+		if(this.state.data.length === 0){
+			window.location.reload();
+		}
 	}
 
 	ApproveStudent = (studentId, eventId, accountEvent) => {

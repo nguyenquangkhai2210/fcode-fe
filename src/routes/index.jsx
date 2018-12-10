@@ -1,4 +1,4 @@
-import Login from '../components/login/Login';
+import Login from '../components/login/Login.jsx';
 import Fulllayout from '../layouts/fulllayout.jsx';
 import UserPage from '../webUser/userPage.jsx';
 
