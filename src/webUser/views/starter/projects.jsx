@@ -6,7 +6,7 @@ import LocalStorageUtils, {
 } from "../../../utils/LocalStorage";
 
 import JWT_Decode from "jwt-decode";
-
+import {message} from "antd";
 import {
   Card,
   CardBody,
@@ -29,7 +29,7 @@ class Projects extends React.Component {
   async componentDidMount() {
     console.log(LocalStorageUtils.getItem(LOCAL_STORAGE_KEY.JWT));
     await get(
-      EVENT_GET_ALL,
+      EVENT_GET_ALL + "/user/test",
       {},
       {
         Authorization:
@@ -40,7 +40,7 @@ class Projects extends React.Component {
         data: res.data
       });
       if (this.state.data.length === 0) {
-        alert("Data is empty");
+        message.error("Data is empty");
       }
     });
   }
@@ -58,10 +58,11 @@ class Projects extends React.Component {
       }
     )
       .then(res => {
+        message.success("Join success");
         alert("Success");
       })
       .catch(err => {
-        alert("You can't join again");
+        message.error("You can't join this event again");
       });
   };
 

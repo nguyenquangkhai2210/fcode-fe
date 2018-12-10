@@ -2,33 +2,18 @@ import React, { Component } from "react";
 import { post } from "../../utils/ApiCaller";
 import { AUTH__LOGIN } from "../../utils/ApiEndpoint";
 import LocalStorageUtils, { LOCAL_STORAGE_KEY } from "../../utils/LocalStorage";
+import { message, Icon, Input, Form , Button} from "antd";
 
-import {  message } from "antd";
-
-import {
-  Input,
-  Form,
-  Button,
-  FormGroup,
-  Label,
-  Col,
-  Row
-} from "reactstrap";
-
-// const imgUrl = '../../assets/images/background/login-bg.jpg';
-import imgUrl from '../../assets/images/background/logo-bg-1.jpg';
+import imgUrl from "../../assets/images/background/logo-bg-1.jpg";
 
 class LoginForm extends Component {
-
-    constructor(props) {
-		super(props);
-		this.state = {
-            studentId : '',
-            password : ''
-		};
-	}
-
-
+  constructor(props) {
+    super(props);
+    this.state = {
+      studentId: "",
+      password: ""
+    };
+  }
 
   componentDidMount() {
     if (LocalStorageUtils.isRole() === "isAdmin") {
@@ -40,22 +25,24 @@ class LoginForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    this.onLogin(this.state.studentId, this.state.password, token => {
-        if (token) {
-          LocalStorageUtils.setItem(LOCAL_STORAGE_KEY.JWT, token);
-          LocalStorageUtils.setItem(
-            LOCAL_STORAGE_KEY.STUDENT_ID,
-            this.state.studentId
-          );
-          if (LocalStorageUtils.isRole() === "isAdmin") {
-            this.props.history.push("/admin");
-          } else if (LocalStorageUtils.isRole() === "isUser") {
-            this.props.history.push("/user");
-          }
-        } else {
-          message.error("Thông tin đăng nhập không chính xác!");
+    this.props.form.validateFields((err, values) => {
+        if (!err) {
+            this.onLogin(values.studentId, values.password, token => {
+                if (token) {
+                  LocalStorageUtils.setItem(LOCAL_STORAGE_KEY.JWT, token);
+                  LocalStorageUtils.setItem(
+                    LOCAL_STORAGE_KEY.STUDENT_ID,
+                    values.studentId
+                  );
+                  if (LocalStorageUtils.isRole() === "isAdmin") {
+                    this.props.history.push("/admin");
+                  } else if (LocalStorageUtils.isRole() === "isUser") {
+                    this.props.history.push("/user");
+                  }
+                }
+            });
         }
-      });
+    });
   };
 
   onLogin(studentId, password, cb) {
@@ -68,35 +55,26 @@ class LoginForm extends Component {
       },
       { "Content-Type": "application/x-www-form-urlencoded" }
     )
-      .then(res => {   
+      .then(res => {
         cb(res.headers.authorization.replace("Bearer  ", ""));
       })
       .catch(err => {
-          alert("Invalid Student ID or password")
+        message.error("Invalid Student ID or Password");
       });
   }
 
-  updateStudentId(evt){
-    this.setState({
-        studentId: evt.target.value
-    });
-  }
-
-  updatePassword(evt){
-    this.setState({
-        password: evt.target.value
-    });
-  }
 
   render() {
-    // const { getFieldDecorator } = this.props.form;
+
+    const { getFieldDecorator } = this.props.form;
 
     return (
-      <div className="content-container" >
+      <div className="content-container">
         <div
           style={{
             display: "flex",
-            backgroundImage : `url(${imgUrl})`,
+            // backgroundImage: `url(${imgUrl})`,
+            background: "#fff",
             padding: "2rem",
             minHeight: "100vh"
           }}
@@ -114,42 +92,60 @@ class LoginForm extends Component {
               className="login-form"
               style={{ maxWidth: 360 }}
             >
-              <FormGroup row>
-                <Label for="studentId" sm={3}>
-                  ID
-                </Label>
-                <Col sm={9}>
-                  <Input id="studentId" placeholder="Student ID" required value = {this.state.username} onChange={evt => this.updateStudentId(evt)} autoComplete="off" className="form-control"/>
-                </Col>
-              </FormGroup>
-              <FormGroup row>
-                <Label for="password" sm={3}>
-                  Password
-                </Label>
-                <Col sm={9}>
-                  <Input id="password" type="password" placeholder="Mật khẩu" required value = {this.state.password} onChange={evt => this.updatePassword(evt)} className="form-control"/>
-                </Col>
-              </FormGroup>
-              <Row>
-              <Col sm={6}>
-              <Button
-                className="login-form-button btn-outline-primary"
-              >
-                Login
-              </Button>
-              </Col>
-              <Col sm={6}>
-              <Button
-                className="btn-outline-secondary"
-                type = "button"
-              >
-                Forgot Password
-              </Button>
-              </Col>
-              </Row>
-              
+              <Form.Item>
+                {getFieldDecorator("studentId", {
+                    rules: [
+                        {
+                            required: true,
+                            message: "Please input Student ID",
+                            
+                        },
+                    ],
+                })(
+                <Input
+                  prefix={
+                    <Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />
+                  }
+                  placeholder="Student ID"
+                />
+                )}
+              </Form.Item>
+              <Form.Item>
+              {getFieldDecorator("password", {
+                    rules: [
+                        {
+                            required: true,
+                            message: "Please input Password",
+                        },
+                    ],
+                })(
+                <Input
+                  prefix={
+                    <Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />
+                  }
+                  type="password"
+                  placeholder="Password"
+                  autoComplete="off"
+                />
+                )}
+              </Form.Item>
+            
+              <Form.Item>
+                <Button
+                  type="primary"
+                  htmlType="submit"
+                  className="login-form-button"
+                >
+                  Login
+                </Button>
+                <Button style={{ float: "right" }}
+                    type="primary"
+                    htmlType="button"
+                >
+                  Forgot Password
+                </Button>
+              </Form.Item>
             </Form>
-               
           </div>
         </div>
       </div>
@@ -157,6 +153,6 @@ class LoginForm extends Component {
   }
 }
 
-const Login = LoginForm;
+const Login = Form.create()(LoginForm);
 
 export default Login;

@@ -2,7 +2,7 @@ import React from "react";
 import { get } from "../../../utils/ApiCaller";
 import { EVENT_GET_ALL, EVENT_PENDING } from "../../../utils/ApiEndpoint";
 import LocalStorageUtils, { LOCAL_STORAGE_KEY } from "../../../utils/LocalStorage";
-
+import { message } from "antd";
 import {
 	Card,
 	CardBody,
@@ -41,9 +41,9 @@ class Projects extends React.Component {
 			.then(res => {
 				if (res.status) {
 					this.props.history.push(`/pending/${eventID}`);
-				}				console.log(res);	
+				}			
 			}).catch((error) => {
-				alert("Event không có peding request");
+				message.error("Event not have peding request")
 			});
 	}
 
