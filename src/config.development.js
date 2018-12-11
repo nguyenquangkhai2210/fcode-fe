@@ -1,6 +1,6 @@
 export const config = {
     apis: {
-        base_url: "http://localhost:8080",
+        base_url: "http://192.168.137.1:8080",
         mocogateway_base_url: "",
     },
     meta: {

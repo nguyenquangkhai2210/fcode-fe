@@ -6,6 +6,67 @@ import {
   Input,
   Table
 } from "reactstrap";
+import { Calendar, Badge } from 'antd';
+import "./alert.scss";
+
+function getListData(value) {
+  let listData;
+  switch (value.date()) {
+    case 8:
+      listData = [
+        { type: 'warning', content: 'This is warning event.' },
+        { type: 'success', content: 'This is usual event.' },
+      ]; break;
+    case 10:
+      listData = [
+        { type: 'warning', content: 'This is warning event.' },
+        { type: 'success', content: 'This is usual event.' },
+        { type: 'error', content: 'This is error event.' },
+      ]; break;
+    case 15:
+      listData = [
+        { type: 'warning', content: 'This is warning event' },
+        { type: 'success', content: 'This is very long usual event。。....' },
+        { type: 'error', content: 'This is error event 1.' },
+        { type: 'error', content: 'This is error event 2.' },
+        { type: 'error', content: 'This is error event 3.' },
+        { type: 'error', content: 'This is error event 4.' },
+      ]; break;
+    default:
+  }
+  return listData || [];
+}
+
+function dateCellRender(value) {
+  const listData = getListData(value);
+  return (
+    <ul className="events">
+      {
+        listData.map(item => (
+          <li key={item.content}>
+            <Badge status={item.type} text={item.content} />
+          </li>
+        ))
+      }
+    </ul>
+  );
+}
+
+function getMonthData(value) {
+  if (value.month() === 8) {
+    return 1394;
+  }
+}
+
+function monthCellRender(value) {
+  const num = getMonthData(value);
+  return num ? (
+    <div className="notes-month">
+      <section>{num}</section>
+      <span>Backlog number</span>
+    </div>
+  ) : null;
+}
 
 class Alerts extends React.Component {
   //For Dismiss Button with Alert
@@ -14,16 +75,16 @@ class Alerts extends React.Component {
 
     this.state = {
       data: [],
-      calendar: ["10/12 to 16/12", "17/12 to 23/12", "24/12 to 30/12"],
-	  isChooseCalendar: "10/12 to 16/12",
-	  arrayDate : ["10/12","11/12","12/12","13/12","14/12","15/12","16/12"]
+      calendar: ["12/10 to 12/16", "12/17 to 12/23", "12/24 to 12/30"],
+      isChooseCalendar: '12/10 to 12/16',
     };
   }
 
   change = event => {
-    console.log(this.state.isChooseCalendar);
-	this.setState({ isChooseCalendar: event.target.value });
+    this.setState({ isChooseCalendar: event.target.value });
+    console.log(this.state.isChooseCalendar.split(" to "));
   };
+
 
   render() {
     return (
@@ -36,7 +97,7 @@ class Alerts extends React.Component {
         {/*Card-1*/}
         {/*--------------------------------------------------------------------------------*/}
         <Card>
-		
+
           <CardBody>
             <div className="d-flex align-items-center">
               <div>
@@ -50,8 +111,8 @@ class Alerts extends React.Component {
                     onChange={ev => this.change(ev)}
                     value={this.state.isChooseCalendar}
                   >
-                    {this.state.calendar.map(date => (						
-                      <option value={this.state.calendar.includes(date)}>{date}</option>
+                    {this.state.calendar.map(date => (
+                      <option key={date} value={date}>{date}</option>
                     ))}
                   </Input>
                 </div>
@@ -63,26 +124,7 @@ class Alerts extends React.Component {
                 </tr>
               </thead>
               <tbody>
-                {/* {this.state.data.map(data => (
-                            <tr key={data.eventId}>
-                              <td>{data.eventId}</td>
-                              <td>{data.eventName}</td>
-                              <td>{data.location}</td>
-                              <td>
-                                <button
-                                  className="btn btn btn-outline-info"
-                                  onClick={() => this.JoinEvent(data.eventId)}
-                                >
-                                  Join
-                                </button>
-                              </td>
-                              <td>
-                                <button className="btn btn btn-outline-info">
-                                  Nothing
-                                </button>
-                              </td>
-                            </tr>
-                          ))} */}
+                <Calendar dateCellRender={dateCellRender} monthCellRender={monthCellRender} />,
               </tbody>
             </Table>
           </CardBody>
