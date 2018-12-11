@@ -1,6 +1,6 @@
 export const config = {
     apis: {
-        base_url: "https://api-fcode.herokuapp.com",
+        base_url: "http://localhost:8080",
         mocogateway_base_url: "",
     },
     meta: {

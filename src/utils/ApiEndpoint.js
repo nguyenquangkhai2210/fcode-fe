@@ -21,7 +21,7 @@ export const GUEST__GET_MY_CONFESS = API_BASE_URL + "/myconfess";
 export const GUEST__GET_OVERVIEW   = API_BASE_URL + "/confessions/overview";
 
 // Event
-export const EVENT_GET_ALL = BASE_URL + "/event";
+export const EVENT_GET__BY_TYPE = BASE_URL + "/event/type/";
 export const EVENT_PENDING = BASE_URL + "/event/pending/";
 export const EVENT_APPROVE = BASE_URL + "/event/approve/";
 export const EVENT_REJECT = BASE_URL + "/event/reject/";

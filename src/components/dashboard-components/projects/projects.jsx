@@ -1,6 +1,6 @@
 import React from "react";
 import { get } from "../../../utils/ApiCaller";
-import { EVENT_GET_ALL, EVENT_PENDING } from "../../../utils/ApiEndpoint";
+import { EVENT_GET__BY_TYPE, EVENT_PENDING } from "../../../utils/ApiEndpoint";
 import LocalStorageUtils, { LOCAL_STORAGE_KEY } from "../../../utils/LocalStorage";
 import { message } from "antd";
 import {
@@ -21,7 +21,7 @@ class Projects extends React.Component {
 
 	async componentDidMount() {
 		console.log(LocalStorageUtils.getItem(LOCAL_STORAGE_KEY.JWT));
-		await get(EVENT_GET_ALL,
+		await get(EVENT_GET__BY_TYPE + "6",
 			{},
 			{ 'Authorization': 'Bearer ' + LocalStorageUtils.getItem(LOCAL_STORAGE_KEY.JWT) })
 			.then(res => {

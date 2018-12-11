@@ -1,6 +1,6 @@
 import React from "react";
 import { get, post } from "../../../utils/ApiCaller";
-import { EVENT_GET_ALL, EVENT_JOIN } from "../../../utils/ApiEndpoint";
+import { EVENT_GET__BY_TYPE, EVENT_JOIN } from "../../../utils/ApiEndpoint";
 import LocalStorageUtils, {
   LOCAL_STORAGE_KEY
 } from "../../../utils/LocalStorage";
@@ -29,7 +29,7 @@ class Projects extends React.Component {
   async componentDidMount() {
     console.log(LocalStorageUtils.getItem(LOCAL_STORAGE_KEY.JWT));
     await get(
-      EVENT_GET_ALL + "/user/test",
+      EVENT_GET__BY_TYPE + "6",
       {},
       {
         Authorization:
@@ -59,7 +59,6 @@ class Projects extends React.Component {
     )
       .then(res => {
         message.success("Join success");
-        alert("Success");
       })
       .catch(err => {
         message.error("You can't join this event again");
