@@ -58,7 +58,7 @@ class Projects extends React.Component {
       }
     )
       .then(res => {
-        message.success("Join success");
+        message.success("Your request join has been sent. Please wating admin approve");
       })
       .catch(err => {
         message.error("You can't join this event again");

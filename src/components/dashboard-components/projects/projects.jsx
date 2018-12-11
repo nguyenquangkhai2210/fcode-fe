@@ -76,7 +76,6 @@ class Projects extends React.Component {
 							<tr className="border-0">
 								<th className="border-0">Event ID</th>
 								<th className="border-0">Event Name</th>
-
 								<th className="border-0">Location</th>
 								<th className="border-0">Pending Request</th>
 								<th className="border-0">Attendance</th>
