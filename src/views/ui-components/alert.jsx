@@ -6,22 +6,24 @@ import {
   EVENT_REJECT
 } from "../../utils/ApiEndpoint";
 import LocalStorageUtils, { LOCAL_STORAGE_KEY } from "../../utils/LocalStorage";
-import { Card, CardBody, CardTitle, Table, Input } from "reactstrap";
-import { Checkbox } from "antd";
+import { Card, Select, Form, Table, Button, message } from "antd";
 
+const Option = Select.Option;
+const { Column } = Table;
 class Alerts extends React.Component {
   //For Dismiss Button with Alert
   constructor(props) {
     super(props);
-
+    
     this.state = {
       data: [],
       listAccount: [],
-      listEvent: [],
+      loading: false
     };
   }
 
   async componentDidMount() {
+    this.setState({ loading: true });
     await get(
       EVENT_PENDING + this.props.location.pathname.replace("/pending/", ""),
       {},
@@ -32,19 +34,23 @@ class Alerts extends React.Component {
     ).then(res => {
       this.setState({
         data: res.data,
-        listAccount: res.data.account,
-        listEvent: res.data.event,
+        listEvent: [],
+        listAccount : res.data.account,
+        loading: false
       });
     });
   }
 
   RemoveStudentInData = accountEventId => {
+
+    // console.log(accountEventId);
+    // console.log(this.state.data.account);
+    
+    
     this.setState({
-      data: this.state.data.filter(data => data.accountEvent !== accountEventId)
+      listAccount : this.state.listAccount.filter(data => data.accountEvent !== accountEventId)
     });
-    if (this.state.data.length === 0) {
-      window.location.reload();
-    }
+    // console.log(this.state.data.account);
   };
 
   ApproveStudent = (studentId, eventId, accountEvent) => {
@@ -62,8 +68,40 @@ class Alerts extends React.Component {
 
   RejectStudent = (studentId, eventId, accountEvent) => {
     this.RemoveStudentInData(accountEvent);
+    
+  };
+
+
+  handleApprove(data)
+  {
+      console.log("Day ne 2",this.state.listAccount);
+      if (this.state.listEvent.length !== 2) {
+          message.error("Please choose 2 event");
+      } else{
+        console.log(data);
+        put(
+            EVENT_APPROVE +  data.accountEvent,
+            {
+                "listEvent" : this.state.listEvent
+            },
+            {},
+            {
+              Authorization:
+                "Bearer " + LocalStorageUtils.getItem(LOCAL_STORAGE_KEY.JWT)
+            }
+          );
+      }
+      message.success("Approved!");
+      this.setState({
+        listEvent : [],
+        listAccount : this.state.listAccount.filter(account => account.accountEvent !== data.accountEvent)        
+    });
+  }
+
+  handleReject(data)
+  {
     put(
-      EVENT_REJECT + eventId + "/" + studentId,
+      EVENT_REJECT + data.accountEvent,
       {},
       {},
       {
@@ -71,88 +109,75 @@ class Alerts extends React.Component {
           "Bearer " + LocalStorageUtils.getItem(LOCAL_STORAGE_KEY.JWT)
       }
     );
-  };
-
-  // onChange = (eventId) => {
-  //   this.setState({
-  //     checkedList : [ ...this.state.checkedList, eventId],
-  //   });
-  //   console.log(this.state.checkedList);
-  // }
-
-  CheckBoxEvent(event)
-  {
-    return <Checkbox value={event.eventId} >{event.eventName} </Checkbox>
+    message.error("Rejected!");
+      this.setState({
+        listEvent : [],
+        listAccount : this.state.listAccount.filter(account => account.accountEvent !== data.accountEvent)        
+    });
   }
 
+
+
+  handleSelect(value) {
+    this.setState({
+        listEvent : value,
+    });
+  }
+
+  
+
   render() {
+    const { getFieldDecorator } = this.props.form;
+
     return (
-      <div>
-        {/*--------------------------------------------------------------------------------*/}
-        {/* Start Inner Div*/}
-        {/*--------------------------------------------------------------------------------*/}
+       
+        <Card title="Pending Request of Event" bordered={false} style={{ width: "100%" }}>
+        <Table dataSource={this.state.listAccount} 
+        loading={this.state.loading}
+        pagination={false}
+        >
+        <Column
+        title="Student ID"
+        key="account.studentId"
+        dataIndex="account.studentId"
+        />
+        <Column
+        title="Full Name"
+        key="fullname"
+        dataIndex="account.name"
+        />
+        <Column
+        title="Choose Time"
+        key="time"
+        render={() => (
+            <Select style={{ width: 300 }} mode="multiple" placeholder="Please select" onChange={this.handleSelect.bind(this)}>
+                {this.state.data.event.map(data => {return <Option value={data.eventId}>{data.eventName}</Option>})}
+            </Select>
+        )}
+        />
+        <Column
+        title="Approve"
+        key="approve"
+        render={(row) => (
+            <Button type="primary" onClick={this.handleApprove.bind(this,row)}>
+            Approve
+            </Button>
+        )}
+        />
+        <Column
+        title="Reject"
+        key="reject"
+        render={(row) => (
+            <Button type="danger" onClick={this.handleReject.bind(this,row)}>
+            Reject 
+            </Button>
+        )}
+        />
+        </Table>     
 
-        {/*--------------------------------------------------------------------------------*/}
-        {/*Card-1*/}
-        {/*--------------------------------------------------------------------------------*/}
-        <Card>
-          <CardBody>
-            <div className="d-flex align-items-center">
-              <div>
-                <CardTitle>Pending Request of Event </CardTitle>
-              </div>
-              <div className="ml-auto d-flex no-block align-items-center">
-                <div className="dl">
-                  <Input type="select" className="custom-select">
-                    <option value="0">Monthly</option>
-                    <option value="1">Daily</option>
-                    <option value="2">Weekly</option>
-                    <option value="3">Yearly</option>
-                  </Input>
-                </div>
-              </div>
-            </div>
-            <Table className="no-wrap v-middle" responsive>
-              <thead>
-                <tr className="border-0">
-                  <th className="border-0">Student ID</th>
-                  <th className="border-0">Full Name</th>
-                  <th className="border-0">Choose Time</th>
-                  <th className="border-0">Approve</th>
-                  <th className="border-0">Reject</th>
-                </tr>
-              </thead>
-              <tbody>
-                {this.state.listAccount.map(data => (
-                  <tr key={data.account.studentId}>
-                    <td>{data.account.studentId}</td>
-                    <td>{data.account.name}</td>
-                    <td>
-                      {this.state.listEvent.map(data => this.CheckBoxEvent(data))}
-                    </td>
-                    <td>
-                      <button className="btn btn btn-outline-success">
-                        Approve 
-                      </button>
-                    </td>
-                    <td>
-                      <button className="btn btn btn-outline-danger">
-                        Reject
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </Table>
-          </CardBody>
         </Card>
-
-        {/*--------------------------------------------------------------------------------*/}
-        {/*End Inner Div*/}
-        {/*--------------------------------------------------------------------------------*/}
-      </div>
     );
   }
 }
 
-export default Alerts;
+export default Form.create()(Alerts);
