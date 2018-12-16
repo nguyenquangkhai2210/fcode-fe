@@ -70,9 +70,9 @@ class Header extends React.Component {
 						{/*--------------------------------------------------------------------------------*/}
 						{/* Mobile View Toggler  [visible only after 768px screen]                         */}
 						{/*--------------------------------------------------------------------------------*/}
-						<a className="nav-toggler d-block d-md-none" onClick={this.showMobilemenu}>
+						<button className="nav-toggler d-block d-md-none" onClick={this.showMobilemenu}>
 							<i className="ti-menu ti-close" />
-						</a>
+						</button>
 					</div>
 					<Collapse className="navbarbg" isOpen={this.state.isOpen} navbar >
 						<Nav className="ml-auto float-right" navbar>

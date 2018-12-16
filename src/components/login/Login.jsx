@@ -4,7 +4,6 @@ import { AUTH__LOGIN } from "../../utils/ApiEndpoint";
 import LocalStorageUtils, { LOCAL_STORAGE_KEY } from "../../utils/LocalStorage";
 import { message, Icon, Input, Form , Button} from "antd";
 
-import imgUrl from "../../assets/images/background/logo-bg-1.jpg";
 
 class LoginForm extends Component {
   constructor(props) {

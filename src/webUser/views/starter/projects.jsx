@@ -5,7 +5,6 @@ import LocalStorageUtils, {
   LOCAL_STORAGE_KEY
 } from "../../../utils/LocalStorage";
 
-import JWT_Decode from "jwt-decode";
 import {message} from "antd";
 import {
   Card,
@@ -13,8 +12,7 @@ import {
   CardTitle,
   CardSubtitle,
   Input,
-  Table,
-  Tooltip
+  Table
 } from "reactstrap";
 
 class Projects extends React.Component {
