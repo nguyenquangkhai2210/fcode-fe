@@ -47,6 +47,19 @@ class Projects extends React.Component {
 			});
 	}
 
+	ViewAttendance = async () => {
+		await get(EVENT_GET__BY_TYPE + 3,
+			{},
+			{ 'Authorization': 'Bearer ' + LocalStorageUtils.getItem(LOCAL_STORAGE_KEY.JWT) })
+			.then(res => {
+				if (res.status) {
+					this.props.history.push(`/attendance/3`);
+				}			
+			}).catch((error) => {
+				message.error("Event not have peding request")
+			});
+	}
+
 	render() {
 		return (
 			/*--------------------------------------------------------------------------------*/
@@ -100,7 +113,7 @@ class Projects extends React.Component {
 											</button>
 										</td>
 										<td>
-											<button className="btn btn btn-outline-info">
+											<button className="btn btn btn-outline-info" onClick={() => this.ViewAttendance()}>
 												View attendance
 											</button>
 										</td>
