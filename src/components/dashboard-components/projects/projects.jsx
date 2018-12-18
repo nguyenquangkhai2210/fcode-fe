@@ -20,7 +20,6 @@ class Projects extends React.Component {
 	}
 
 	async componentDidMount() {
-		console.log(LocalStorageUtils.getItem(LOCAL_STORAGE_KEY.JWT));
 		await get(EVENT_GET__BY_TYPE + "6",
 			{},
 			{ 'Authorization': 'Bearer ' + LocalStorageUtils.getItem(LOCAL_STORAGE_KEY.JWT) })
@@ -67,7 +66,6 @@ class Projects extends React.Component {
 			/*--------------------------------------------------------------------------------*/
 
 			<Card>
-				{console.log(this.state.data)}
 				<CardBody>
 					<div className="d-flex align-items-center">
 						<div>

@@ -5,7 +5,7 @@ import {
   EVENT_CREATE_DETAIL
 } from "../../utils/ApiEndpoint";
 import LocalStorageUtils, { LOCAL_STORAGE_KEY } from "../../utils/LocalStorage";
-import { Card, Form, Table, Button, Modal, DatePicker, Input, Tooltip, Icon } from "antd";
+import { Card, Form, Table, Button, Modal, DatePicker, Input, Tooltip, Icon, message } from "antd";
 import "./attendance.css";
 
 const { Column } = Table;
@@ -48,35 +48,43 @@ class Alerts extends React.Component {
     });
   };
 
-  showModal = () => {
+  showModal = (eventId) => {
     this.setState({
-      visible: true,
+      visible: eventId,
     });
   }
 
-  handleOk = async (eventId) => {
+  createAttendance = async (eventId) => {
     await this.props.form.validateFields((err, fieldsValue) => {
       if (err) {
         return;
       }
 
+      this.setState({ loadingModal: true });
       // Should format date value before submit.
       const values = {
         ...fieldsValue,
-        'date-picker': fieldsValue['date-picker'].format('YYYY-MM-DD'),
+        'date_time_picker': fieldsValue['date_time_picker'].format('YYYY-MM-DD HH:mm:ss'),
       };
-      console.log('Received values of form: ', eventId);
-      // post(EVENT_CREATE_DETAIL,
-      //           {},
-      //           {},
-      //           {
-      //             Authorization:
-      //               "Bearer " + LocalStorageUtils.getItem(LOCAL_STORAGE_KEY.JWT)
-      //           })
-      this.setState({ loadingModal: true });
-      setTimeout(() => {
-        this.setState({ loadingModal: false, visible: false });
-      }, 3000);
+      console.log('Received values of form: ', values, eventId);
+      post(EVENT_CREATE_DETAIL + eventId,
+        {
+          "detailName": values.detailName,
+          "date": values.date_time_picker,
+        },
+        {},
+        {
+          Authorization:
+            "Bearer " + LocalStorageUtils.getItem(LOCAL_STORAGE_KEY.JWT)
+        })
+        .then(res => {
+          message.success("Created!");
+          this.setState({ loadingModal: false, visible: false });
+        })
+        .catch(err => {
+          message.error("Can't create!");
+          this.setState({ loadingModal: false, visible: false });
+        })
     });
   }
 
@@ -84,6 +92,9 @@ class Alerts extends React.Component {
     this.setState({ visible: false });
   }
 
+  handleCheckRow = (row) => {
+    console.log(row.eventId);
+  }
   render() {
     const { visible, loadingModal } = this.state;
     const { getFieldDecorator } = this.props.form;
@@ -115,53 +126,49 @@ class Alerts extends React.Component {
             title="Create attendance"
             key="create"
             render={(row) => (
-              
+              <div className="ant_modal">
+                <Button type="primary" onClick={this.showModal.bind(this, row.eventId)}>
+                  Create attendance
+                </Button>
+                <Modal
+                  className={row.eventId}
+                  visible={visible === row.eventId ? true : false}
+                  title="Title"
+                  onOk={this.createAttendance}
+                  onCancel={this.handleCancel}
+                  footer={[
+                    <Button key="back" onClick={this.handleCancel}>Return</Button>,
+                    <Button key="submit" type="primary" loading={loadingModal} onClick={this.createAttendance.bind(this, row.eventId)}>
+                      Submit
+                    </Button>,
+                  ]}
+                >
+                  <FormItem
+                    label="Date"
+                  >
+                    {getFieldDecorator('date_time_picker', config)(
+                      <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" />
+                    )}
+                  </FormItem>
+                  <FormItem
+                    label={(
+                      <span>
+                        Detail Name&nbsp;
+                        <Tooltip title="What do you want others to call you?">
+                          <Icon type="question-circle-o" />
+                        </Tooltip>
+                      </span>
+                    )}
+                  >
+                    {getFieldDecorator('detailName', {
+                      rules: [{ required: true, message: 'Please input detail name!', whitespace: true }],
+                    })(
+                      <Input />
+                    )}
+                  </FormItem>
+                </Modal>
+              </div>
             )}
-            // render={(row) => (
-            //   <div className="ant_modal">
-            //     <Button type="primary" onClick={this.showModal}>
-            //       Create attendance
-            //     </Button>
-            //     <Modal
-            //       visible={visible}
-            //       title="Title"
-            //       onOk={this.handleOk}
-            //       onCancel={this.handleCancel}
-            //       footer={[
-            //         <Button key="back" onClick={this.handleCancel}>Return</Button>,
-            //         <Button key="submit" type="primary" loading={loadingModal} onClick={this.handleOk.bind(this,row)}>
-            //           Submit
-            //         </Button>,
-            //       ]}
-            //     >
-            //       <FormItem
-            //         // {...formItemLayout}
-            //         label="Date"
-            //       >
-            //         {getFieldDecorator('date-picker', config)(
-            //           <DatePicker />
-            //         )}
-            //       </FormItem>
-            //       <FormItem
-            //         // {...formItemLayout}
-            //         label={(
-            //           <span>
-            //             Detail Name&nbsp;
-            //             <Tooltip title="What do you want others to call you?">
-            //               <Icon type="question-circle-o" />
-            //             </Tooltip>
-            //           </span>
-            //         )}
-            //       >
-            //         {getFieldDecorator('detailName', {
-            //           rules: [{ required: true, message: 'Please input detail name!', whitespace: true }],
-            //         })(
-            //           <Input />
-            //         )}
-            //       </FormItem>
-            //     </Modal>
-            //   </div>
-            // )}
           />
           <Column
             title="Take attendance"
