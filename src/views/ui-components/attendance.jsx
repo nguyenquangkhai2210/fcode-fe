@@ -66,11 +66,13 @@ class Alerts extends React.Component {
         ...fieldsValue,
         'date_time_picker': fieldsValue['date_time_picker'].format('YYYY-MM-DD HH:mm:ss'),
       };
-      console.log('Received values of form: ', values, eventId);
+      
+      let detailName = values.detailName;
+      let date = values.date_time_picker;
       post(EVENT_CREATE_DETAIL + eventId,
         {
-          "detailName": values.detailName,
-          "date": values.date_time_picker,
+          detailName,
+          date
         },
         {},
         {
