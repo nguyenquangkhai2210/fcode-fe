@@ -11,7 +11,7 @@ import "./attendance.css";
 const { Column } = Table;
 const FormItem = Form.Item;
 
-class Alerts extends React.Component {
+class Attendance extends React.Component {
   //For Dismiss Button with Alert
   constructor(props) {
     super(props);
@@ -66,7 +66,7 @@ class Alerts extends React.Component {
         ...fieldsValue,
         'date_time_picker': fieldsValue['date_time_picker'].format('YYYY-MM-DD HH:mm:ss'),
       };
-      
+
       let detailName = values.detailName;
       let date = values.date_time_picker;
       post(EVENT_CREATE_DETAIL + eventId,
@@ -188,4 +188,4 @@ class Alerts extends React.Component {
   }
 }
 
-export default Form.create()(Alerts);
+export default Form.create()(Attendance);
