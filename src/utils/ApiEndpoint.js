@@ -1,4 +1,4 @@
-import { config } from "../config";
+import { config } from "../configs/config";
 
 export const BASE_URL      = config.apis.base_url;
 export const AUTH_BASE_URL = BASE_URL + "/auth";
