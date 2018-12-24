@@ -1,8 +1,10 @@
 import Starter from '../views/starter/starter.jsx';
 // ui components
-import Alerts from '../views/ui-components/alert.jsx';
+import Pending from '../views/ui-components/pending.jsx';
 import Attendance from '../views/ui-components/attendance.jsx';
 import CreateAccount from '../views/ui-components/createAccount.jsx';
+import ListAccount from '../views/ui-components/listAccount.jsx';
+
 
 
 
@@ -17,7 +19,7 @@ var ThemeRoutes = [
     path: `/pending/:eventId`,
     name: 'Pending',
     icon: 'mdi mdi-comment-processing-outline',
-    component: Alerts
+    component: Pending
   },
   {
     path: `/attendance/3`,
@@ -30,6 +32,12 @@ var ThemeRoutes = [
     name: 'Create account',
     icon: 'mdi mdi-arrange-send-backward',
     component: CreateAccount
+  },
+  {
+    path: '/listAccount',
+    name: 'List account',
+    icon: 'mdi mdi-arrange-send-backward',
+    component: ListAccount
   },
   { path: '/admin', pathTo: '/event', name: 'Dashboard', redirect: true }
 ];

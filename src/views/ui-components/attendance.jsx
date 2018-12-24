@@ -2,7 +2,8 @@ import React from "react";
 import { get, post } from "../../utils/ApiCaller";
 import {
   EVENT_GET__BY_TYPE,
-  EVENT_CREATE_DETAIL
+  EVENT_CREATE_DETAIL,
+  EVENT_GET_DETAIL_BY_ID
 } from "../../utils/ApiEndpoint";
 import LocalStorageUtils, { LOCAL_STORAGE_KEY } from "../../utils/LocalStorage";
 import { Card, Form, Table, Button, Modal, DatePicker, Input, Tooltip, Icon, message } from "antd";
@@ -18,10 +19,12 @@ class Attendance extends React.Component {
 
     this.state = {
       data: [],
+      dataTakeAttendance: [],
       listAccount: [],
       loading: false,
       visible: false,
-      loadingModal: false
+      loadingModal: false,
+      visibleTakeAttendance: false,
     };
   }
 
@@ -96,6 +99,34 @@ class Attendance extends React.Component {
 
   handleCheckRow = (row) => {
     console.log(row.eventId);
+  }
+
+  takeAttendance = async (eventId) => {
+    await get(
+      EVENT_GET_DETAIL_BY_ID + eventId,
+      {},
+      {
+        Authorization:
+          "Bearer " + LocalStorageUtils.getItem(LOCAL_STORAGE_KEY.JWT)
+      }
+    ).then(res => {
+      this.setState({
+        dataTakeAttendance: res.data,
+        visibleTakeAttendance: true,
+      })
+    })
+  }
+
+  handleOkTakeAttendance = (e) => {
+    this.setState({
+      visibleTakeAttendance: false,
+    });
+  }
+
+  handleCancelTakeAttendance = (e) => {
+    this.setState({
+      visibleTakeAttendance: false,
+    });
   }
   render() {
     const { visible, loadingModal } = this.state;
@@ -176,9 +207,21 @@ class Attendance extends React.Component {
             title="Take attendance"
             key="take"
             render={(row) => (
-              <Button type="danger">
-                Take attendance
-            </Button>
+              <div>
+                <Button type="danger" onClick={this.takeAttendance.bind(this, row.eventId)}>
+                  Take attendance
+                </Button>
+                <Modal
+                  title="Take Attendance"
+                  visible={this.state.visibleTakeAttendance === row.eventId ? true : false}
+                  onOk={this.handleOkTakeAttendance}
+                  onCancel={this.handleCancelTakeAttendance}
+                >
+                  <p>Some contents...</p>
+                  <p>Some contents...</p>
+                  <p>Some contents...</p>
+                </Modal>
+              </div>
             )}
           />
         </Table>

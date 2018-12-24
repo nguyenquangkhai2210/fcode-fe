@@ -10,7 +10,7 @@ import { Card, Select, Form, Table, Button, message } from "antd";
 
 const Option = Select.Option;
 const { Column } = Table;
-class Alerts extends React.Component {
+class Pending extends React.Component {
   //For Dismiss Button with Alert
   constructor(props) {
     super(props);
@@ -179,4 +179,4 @@ class Alerts extends React.Component {
   }
 }
 
-export default Form.create()(Alerts);
+export default Form.create()(Pending);
