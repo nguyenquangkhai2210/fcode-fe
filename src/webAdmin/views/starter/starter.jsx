@@ -3,7 +3,7 @@ import {
     Row,
     Col
 } from 'reactstrap';
-import { Projects } from '../../components/dashboard-components';
+import Projects from './projects.jsx';
 
 class Starter extends React.Component {
     render() {

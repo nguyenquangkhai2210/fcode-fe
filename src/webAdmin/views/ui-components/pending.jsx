@@ -1,11 +1,11 @@
 import React from "react";
-import { get, put } from "../../utils/ApiCaller";
+import { get, put } from "../../../utils/ApiCaller";
 import {
   EVENT_PENDING,
   EVENT_APPROVE,
   EVENT_REJECT
-} from "../../utils/ApiEndpoint";
-import LocalStorageUtils, { LOCAL_STORAGE_KEY } from "../../utils/LocalStorage";
+} from "../../../utils/ApiEndpoint";
+import LocalStorageUtils, { LOCAL_STORAGE_KEY } from "../../../utils/LocalStorage";
 import { Card, Select, Form, Table, Button, message } from "antd";
 
 const Option = Select.Option;

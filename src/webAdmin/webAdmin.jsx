@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-d
 import Header from '../components/header/header.jsx';
 import Sidebar from '../components/sidebar/sidebar.jsx';
 import Footer from '../components/footer/footer.jsx';
-import ThemeRoutes from '../routes/routingSlidebar.jsx';
-import Routes from '../routes/routing.jsx';
+import ThemeRoutes from './routes/routingSlidebar.jsx';
+import Routes from './routes/routing.jsx';
 
 
 class Fulllayout extends React.Component {
@@ -76,7 +76,7 @@ class Fulllayout extends React.Component {
 					{/*--------------------------------------------------------------------------------*/}
 					{/* Header                                                                         */}
 					{/*--------------------------------------------------------------------------------*/}
-					<Header data={this.state} />
+					<Header data={this.state}/>
 					{/*--------------------------------------------------------------------------------*/}
 					{/* Sidebar                                                                        */}
 					{/*--------------------------------------------------------------------------------*/}

@@ -1,5 +1,5 @@
 import Login from '../components/login/Login.jsx';
-import Fulllayout from '../layouts/fulllayout.jsx';
+import AdminPage from '../webAdmin/webAdmin.jsx';
 import UserPage from '../webUser/userPage.jsx';
 
 import withAdminRouteComponent from "./withAdminRouteComponent";
@@ -21,7 +21,7 @@ var indexRoutes = [
     { 
         path: '/admin', 
         name: 'Admin', 
-        component: withAdmin(Fulllayout),
+        component: withAdmin(AdminPage),
     },
     { 
         path: '/user', 
