@@ -7,6 +7,8 @@ import {
 } from "../../../utils/ApiEndpoint";
 import LocalStorageUtils, { LOCAL_STORAGE_KEY } from "../../../utils/LocalStorage";
 import { Card, Form, Table, Button, Modal, DatePicker, Input, Tooltip, Icon, message } from "antd";
+import moment from 'moment';
+
 import "./attendance.css";
 
 const { Column } = Table;
@@ -25,6 +27,7 @@ class Attendance extends React.Component {
       visible: false,
       loadingModal: false,
       visibleTakeAttendance: false,
+      loadingTakeAttendance: false
     };
   }
 
@@ -102,6 +105,9 @@ class Attendance extends React.Component {
   }
 
   takeAttendance = async (eventId) => {
+    this.setState({
+      loadingTakeAttendance: true,
+    })
     await get(
       EVENT_GET_DETAIL_BY_ID + eventId,
       {},
@@ -112,8 +118,10 @@ class Attendance extends React.Component {
     ).then(res => {
       this.setState({
         dataTakeAttendance: res.data,
-        visibleTakeAttendance: true,
+        visibleTakeAttendance: eventId,
+        loadingTakeAttendance: false
       })
+      console.log(this.state.dataTakeAttendance);
     })
   }
 
@@ -160,7 +168,8 @@ class Attendance extends React.Component {
             key="create"
             render={(row) => (
               <div className="ant_modal">
-                <Button type="primary" onClick={this.showModal.bind(this, row.eventId)}>
+                <Button type="primary" 
+                        onClick={this.showModal.bind(this, row.eventId)}>
                   Create attendance
                 </Button>
                 <Modal
@@ -170,8 +179,14 @@ class Attendance extends React.Component {
                   onOk={this.createAttendance}
                   onCancel={this.handleCancel}
                   footer={[
-                    <Button key="back" onClick={this.handleCancel}>Return</Button>,
-                    <Button key="submit" type="primary" loading={loadingModal} onClick={this.createAttendance.bind(this, row.eventId)}>
+                    <Button key="back"
+                            onClick={this.handleCancel}>
+                      Return
+                    </Button>,
+                    <Button key="submit" 
+                            type="primary" 
+                            loading={loadingModal} 
+                            onClick={this.createAttendance.bind(this, row.eventId)}>
                       Submit
                     </Button>,
                   ]}
@@ -217,9 +232,30 @@ class Attendance extends React.Component {
                   onOk={this.handleOkTakeAttendance}
                   onCancel={this.handleCancelTakeAttendance}
                 >
-                  <p>Some contents...</p>
-                  <p>Some contents...</p>
-                  <p>Some contents...</p>
+                  <Table dataSource={this.state.dataTakeAttendance}
+                    loading={this.state.loadingTakeAttendance}
+                    pagination={false}
+                  >
+                    <Column
+                      title="Event Detail"
+                      key="eventDetail"
+                      dataIndex="eventDetail"
+                    />
+                    <Column
+                      title="Name"
+                      key="detailName"
+                      dataIndex="detailName"
+                    />
+                    <Column
+                      title="Date"
+                      key="dateEvent"
+                      render = {(row) => (
+                        <DatePicker defaultValue={moment(row.dateEvent.split("T")[0] + " " + row.dateEvent.split("T")[1].split(".")[0])} 
+                                    format="YYYY-MM-DD HH:mm:ss"             
+                                    disabled />
+                      )}
+                    />
+                  </Table>
                 </Modal>
               </div>
             )}
