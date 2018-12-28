@@ -1,11 +1,11 @@
 import React from "react";
-import { get, post } from "../../../utils/ApiCaller";
+import { get, post } from "../../../../utils/ApiCaller";
 import {
   EVENT_GET__BY_TYPE,
   EVENT_CREATE_DETAIL,
   EVENT_GET_DETAIL_BY_ID
-} from "../../../utils/ApiEndpoint";
-import LocalStorageUtils, { LOCAL_STORAGE_KEY } from "../../../utils/LocalStorage";
+} from "../../../../utils/ApiEndpoint";
+import LocalStorageUtils, { LOCAL_STORAGE_KEY } from "../../../../utils/LocalStorage";
 import { Card, Form, Table, Button, Modal, DatePicker, Input, Tooltip, Icon, message } from "antd";
 
 

@@ -1,10 +1,10 @@
 import Starter from '../views/starter/starter.jsx';
 // ui components
 import Pending from '../views/ui-components/pending.jsx';
-import Attendance from '../views/ui-components/attendance.1.jsx';
+import Attendance from '../views/ui-components/attendance/attendance.jsx';
 import CreateAccount from '../views/ui-components/createAccount.jsx';
 import ListAccount from '../views/ui-components/listAccount.jsx';
-import TakeAttendancePage from "../views/ui-components/takeAttendance.jsx";
+import TakeAttendancePage from "../views/ui-components/attendance/takeAttendance.jsx";
 
 
 
