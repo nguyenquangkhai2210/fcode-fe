@@ -1,9 +1,10 @@
 import Starter from '../views/starter/starter.jsx';
 // ui components
 import Pending from '../views/ui-components/pending.jsx';
-import Attendance from '../views/ui-components/attendance.jsx';
+import Attendance from '../views/ui-components/attendance.1.jsx';
 import CreateAccount from '../views/ui-components/createAccount.jsx';
 import ListAccount from '../views/ui-components/listAccount.jsx';
+import TakeAttendancePage from "../views/ui-components/takeAttendance.jsx";
 
 
 
@@ -22,7 +23,13 @@ var ThemeRoutes = [
     component: Pending
   },
   {
-    path: `/attendance/3`,
+    path: `/attendance/takeAttendance/:eventId`,
+    name: 'Take attendance',
+    icon: 'mdi mdi-comment-processing-outline',
+    component: TakeAttendancePage
+  },
+  {
+    path: `/attendance/`,
     name: 'Attendance',
     icon: 'mdi mdi-comment-processing-outline',
     component: Attendance

@@ -52,7 +52,7 @@ class Projects extends React.Component {
 			{ 'Authorization': 'Bearer ' + LocalStorageUtils.getItem(LOCAL_STORAGE_KEY.JWT) })
 			.then(res => {
 				if (res.status) {
-					this.props.history.push(`/attendance/3`);
+					this.props.history.push(`/attendance/`);
 				}			
 			}).catch((error) => {
 				message.error("Event not have peding request")

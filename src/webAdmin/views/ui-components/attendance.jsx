@@ -168,8 +168,8 @@ class Attendance extends React.Component {
             key="create"
             render={(row) => (
               <div className="ant_modal">
-                <Button type="primary" 
-                        onClick={this.showModal.bind(this, row.eventId)}>
+                <Button type="primary"
+                  onClick={this.showModal.bind(this, row.eventId)}>
                   Create attendance
                 </Button>
                 <Modal
@@ -180,13 +180,13 @@ class Attendance extends React.Component {
                   onCancel={this.handleCancel}
                   footer={[
                     <Button key="back"
-                            onClick={this.handleCancel}>
+                      onClick={this.handleCancel}>
                       Return
                     </Button>,
-                    <Button key="submit" 
-                            type="primary" 
-                            loading={loadingModal} 
-                            onClick={this.createAttendance.bind(this, row.eventId)}>
+                    <Button key="submit"
+                      type="primary"
+                      loading={loadingModal}
+                      onClick={this.createAttendance.bind(this, row.eventId)}>
                       Submit
                     </Button>,
                   ]}
@@ -249,10 +249,22 @@ class Attendance extends React.Component {
                     <Column
                       title="Date"
                       key="dateEvent"
-                      render = {(row) => (
-                        <DatePicker defaultValue={moment(row.dateEvent.split("T")[0] + " " + row.dateEvent.split("T")[1].split(".")[0])} 
-                                    format="YYYY-MM-DD HH:mm:ss"             
-                                    disabled />
+                      render={(row) => (
+                        <DatePicker defaultValue={moment(row.dateEvent.split("T")[0] + " " + row.dateEvent.split("T")[1].split(".")[0])}
+                          format="YYYY-MM-DD HH:mm:ss"
+                          disabled />
+                      )}
+                    />
+                    <Column
+                      title="Take attendance"
+                      key="takeAttendance"
+                      render={(row) => (
+                        <div>
+                          <Button type="primary">
+                            Take attendance
+                          </Button>
+                          
+                        </div>
                       )}
                     />
                   </Table>
