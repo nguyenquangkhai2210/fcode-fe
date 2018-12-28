@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {
-	Form, Input, Tooltip, Icon, Radio, Button, InputNumber, Card, Row, Col
+	Form, Input, Radio, Button, InputNumber, Card, Row, Col
 } from 'antd';
 
 const FormItem = Form.Item;
