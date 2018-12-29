@@ -44,6 +44,10 @@ class Header extends React.Component {
 		document.getElementById('main-wrapper').classList.toggle('show-sidebar');
 	}
 
+	ViewFrofile = () => {
+		this.props.history.push('/admin/viewProfile');
+	}
+
 	Logout = () =>{
 		LocalStorageUtils.clear();
 		window.location.reload();
@@ -92,7 +96,7 @@ class Header extends React.Component {
 									</Button>
 								</DropdownToggle>
 								<DropdownMenu right>
-									<DropdownItem>
+									<DropdownItem onClick={() => this.ViewFrofile()}>
 										<i className="ti-user mr-1 ml-1" /> My Account
                   </DropdownItem>
 									<DropdownItem>

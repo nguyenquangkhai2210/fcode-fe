@@ -3,7 +3,6 @@ import Starter from '../views/starter/starter.jsx';
 import CreateAccount from '../views/ui-components/createAccount.jsx';
 import ListAccount from '../views/ui-components/listAccount.jsx';
 
-
 var ThemeRoutes = [
   { 
     path: '/event', 

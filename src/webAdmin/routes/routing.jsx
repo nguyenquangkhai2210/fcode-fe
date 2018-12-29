@@ -5,6 +5,7 @@ import Attendance from '../views/ui-components/attendance/attendance.jsx';
 import CreateAccount from '../views/ui-components/createAccount.jsx';
 import ListAccount from '../views/ui-components/listAccount.jsx';
 import TakeAttendancePage from "../views/ui-components/attendance/takeAttendance.jsx";
+import ViewProfile from '../views/ui-components/viewProfile/viewProfile.jsx';
 
 
 
@@ -45,6 +46,12 @@ var ThemeRoutes = [
     name: 'List account',
     icon: 'mdi mdi-arrange-send-backward',
     component: ListAccount
+  },
+  {
+    path: '/viewProfile',
+    name: 'View profile',
+    icon: 'mdi mdi-credit-card-multiple',
+    component: ViewProfile
   },
   { path: '/admin', pathTo: '/event', name: 'Dashboard', redirect: true }
 ];

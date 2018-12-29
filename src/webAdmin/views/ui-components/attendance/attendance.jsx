@@ -154,7 +154,7 @@ class Attendance extends React.Component {
                     type="primary"
                     onClick={this.showModal.bind(this, row.eventId)}>
                     Create attendance
-                </Button>
+                  </Button>
                   <Modal
                     className={row.eventId}
                     visible={visible === row.eventId ? true : false}

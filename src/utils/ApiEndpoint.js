@@ -19,6 +19,10 @@ export const EVENT_GET_DETAIL_BY_ID = BASE_URL + "/detail/all/";
 export const EVENT_GET_ALL_ACCOUNT = BASE_URL + "/account";
 export const EVENT_GET_STUDENTS_ATTENDANCE = BASE_URL + "/detail/";
 
+//Account
+export const ACCOUNT_GET_PROFILE = BASE_URL + "/account/";
+
+
 
 
 
