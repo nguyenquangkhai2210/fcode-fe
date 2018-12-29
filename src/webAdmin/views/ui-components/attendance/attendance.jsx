@@ -104,7 +104,7 @@ class Attendance extends React.Component {
   }
 
   takeAttendance = (eventId) => {
-    this.props.history.push(`/attendance/takeAttendance/${eventId}`);
+    this.props.history.push(`/admin/attendance/${eventId}`);
   }
 
   handleOkTakeAttendance = (e) => {
@@ -125,7 +125,6 @@ class Attendance extends React.Component {
       rules: [{ type: 'object', required: true, message: 'Please select time!' }],
     };
     return (
-      <div>
         <Card title="Attendance" bordered={false} style={{ width: "100%" }}>
           <Table dataSource={this.state.data}
             loading={this.state.loading}
@@ -151,7 +150,8 @@ class Attendance extends React.Component {
               key="create"
               render={(row) => (
                 <div className="ant_modal">
-                  <Button type="primary"
+                  <Button 
+                    type="primary"
                     onClick={this.showModal.bind(this, row.eventId)}>
                     Create attendance
                 </Button>
@@ -162,11 +162,13 @@ class Attendance extends React.Component {
                     onOk={this.createAttendance}
                     onCancel={this.handleCancel}
                     footer={[
-                      <Button key="back"
+                      <Button 
+                        key="back"
                         onClick={this.handleCancel}>
                         Return
                     </Button>,
-                      <Button key="submit"
+                      <Button 
+                        key="submit"
                         type="primary"
                         loading={loadingModal}
                         onClick={this.createAttendance.bind(this, row.eventId)}>
@@ -206,7 +208,9 @@ class Attendance extends React.Component {
               key="take"
               render={(row) => (
                 <div>
-                  <Button type="danger" onClick={this.takeAttendance.bind(this, row.eventId)}>
+                  <Button 
+                    type="danger" 
+                    onClick={this.takeAttendance.bind(this, row.eventId)}>
                     Take attendance
                 </Button>
                 </div>
@@ -214,7 +218,6 @@ class Attendance extends React.Component {
             />
           </Table>
         </Card>
-      </div>
     );
   }
 }

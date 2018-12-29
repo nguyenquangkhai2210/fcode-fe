@@ -11,7 +11,7 @@ class Starter extends React.Component {
             <div>
                 <Row>
                     <Col sm={12}>
-                        <Projects history={this.props.history} />
+                        <Projects {...this.props} />
                     </Col>
                 </Row>
             </div>

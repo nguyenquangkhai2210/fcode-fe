@@ -1,10 +1,11 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import Header from '../components/header/header.jsx';
 import Sidebar from '../components/sidebar/sidebar.jsx';
 import Footer from '../components/footer/footer.jsx';
 import ThemeRoutes from './routes/routingSlidebar.jsx';
 import Routes from './routes/routing.jsx';
+
 
 
 class Fulllayout extends React.Component {
@@ -63,46 +64,44 @@ class Fulllayout extends React.Component {
 		/* Theme Setting && Layout Options wiil be Change From Here                       */
 		/*--------------------------------------------------------------------------------*/
 		return (
-			<Router>
-				<div
-					id="main-wrapper"
-					data-theme="light"
-					data-layout="vertical"
-					data-sidebartype="full"
-					data-sidebar-position="fixed"
-					data-header-position="fixed"
-					data-boxed-layout="full"
-				>
-					{/*--------------------------------------------------------------------------------*/}
-					{/* Header                                                                         */}
-					{/*--------------------------------------------------------------------------------*/}
-					<Header data={this.state}/>
-					{/*--------------------------------------------------------------------------------*/}
-					{/* Sidebar                                                                        */}
-					{/*--------------------------------------------------------------------------------*/}
-					<Sidebar data={this.state} {...this.props} routes={ThemeRoutes} />
-					{/*--------------------------------------------------------------------------------*/}
-					{/* Page Main-Content                                                              */}
-					{/*--------------------------------------------------------------------------------*/}
-					<div className="page-wrapper d-block">
-						<div className="page-content container-fluid">
-							<Switch>
-								{Routes.map((prop, key) => {
-									if (prop.redirect) {
-										return <Redirect from={prop.path} to={prop.pathTo} key={key} />;
-									}
-									else {
-										return (
-											<Route path={prop.path} component={prop.component} key={key} />
-										);
-									}
-								})}
-							</Switch>
-						</div>
-						<Footer />
+			<div
+				id="main-wrapper"
+				data-theme="light"
+				data-layout="vertical"
+				data-sidebartype="full"
+				data-sidebar-position="fixed"
+				data-header-position="fixed"
+				data-boxed-layout="full"
+			>
+				{/*--------------------------------------------------------------------------------*/}
+				{/* Header                                                                         */}
+				{/*--------------------------------------------------------------------------------*/}
+				<Header data={this.state} />
+				{/*--------------------------------------------------------------------------------*/}
+				{/* Sidebar                                                                        */}
+				{/*--------------------------------------------------------------------------------*/}
+				<Sidebar data={this.state} {...this.props} routes={ThemeRoutes} />
+				{/*--------------------------------------------------------------------------------*/}
+				{/* Page Main-Content                                                              */}
+				{/*--------------------------------------------------------------------------------*/}
+				<div className="page-wrapper d-block">
+					<div className="page-content container-fluid">
+						<Switch>
+							{Routes.map((prop, key) => {
+								if (prop.redirect) {
+									return <Redirect from={prop.path} to={this.props.match.path + prop.pathTo} key={key} />;
+								}
+								else {
+									return (
+										<Route path={this.props.match.path + prop.path} component={prop.component} key={key} />
+									);
+								}
+							})}
+						</Switch>
 					</div>
+					<Footer />
 				</div>
-			</Router>
+			</div>
 		);
 	}
 }

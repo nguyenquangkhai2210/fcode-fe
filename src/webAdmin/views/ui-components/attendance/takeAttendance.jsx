@@ -111,12 +111,12 @@ class TakeAttendance extends React.Component {
             )}
           />
           <Column
-            title="List student"
+            title="List"
             key="listStudent"
             render={(row) => (
               <div>
                 <Button type="primary" onClick={this.getListStudents.bind(this, row.eventDetail)}>
-                  List student
+                  List
                 </Button>
                 <Modal
                   title="Take Attendance"

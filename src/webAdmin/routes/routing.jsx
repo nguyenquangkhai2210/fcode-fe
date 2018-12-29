@@ -23,7 +23,7 @@ var ThemeRoutes = [
     component: Pending
   },
   {
-    path: `/attendance/takeAttendance/:eventId`,
+    path: `/attendance/:eventId`,
     name: 'Take attendance',
     icon: 'mdi mdi-comment-processing-outline',
     component: TakeAttendancePage

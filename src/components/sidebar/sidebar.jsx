@@ -19,7 +19,9 @@ class Sidebar extends React.Component {
 	/*--------------------------------------------------------------------------------*/
 	/*Verifies if routeName is the one active (in browser input)                      */
 	/*--------------------------------------------------------------------------------*/
-	activeRoute(routeName) { return this.props.location.pathname.indexOf(routeName) > -1 ? 'selected' : ''; }
+	activeRoute(routeName) { 
+		return this.props.location.pathname.indexOf(routeName) > -1 ? 'selected' : ''; 
+	}
 
 	render() {
 		return (
@@ -39,8 +41,8 @@ class Sidebar extends React.Component {
 										/*--------------------------------------------------------------------------------*/
 										/* Adding Sidebar Item                                                            */
 										/*--------------------------------------------------------------------------------*/
-										<li className={this.activeRoute(prop.path) + (prop.pro ? ' active active-pro' : '') + ' sidebar-item'} key={key}>
-											<NavLink to={prop.path} className="sidebar-link" activeClassName="active">
+										<li className={this.activeRoute(this.props.match.path + prop.path) + (prop.pro ? ' active active-pro' : '') + ' sidebar-item'} key={key}>
+											<NavLink to={this.props.match.path + prop.path} className="sidebar-link" activeClassName="active">
 												<i className={prop.icon} />
 												<span className="hide-menu">{prop.name}</span>
 											</NavLink>
