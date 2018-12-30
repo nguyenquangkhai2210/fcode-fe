@@ -1,11 +1,12 @@
 import React from "react";
-import { get } from "../../../../utils/ApiCaller";
+import { get, put } from "../../../../utils/ApiCaller";
 import {
   EVENT_GET_DETAIL_BY_ID,
-  EVENT_GET_STUDENTS_ATTENDANCE
+  EVENT_GET_STUDENTS_ATTENDANCE,
+  ATTENDANCE_TAKE_ATTENDANCE
 } from "../../../../utils/ApiEndpoint";
 import LocalStorageUtils, { LOCAL_STORAGE_KEY } from "../../../../utils/LocalStorage";
-import { Card, Form, Table, DatePicker, Button, Modal, Radio, Input } from "antd";
+import { Card, Form, Table, DatePicker, Button, Modal, Radio, Input, message } from "antd";
 import moment from 'moment';
 
 import "./attendance.css";
@@ -23,6 +24,7 @@ class TakeAttendance extends React.Component {
       visibleStudents: false,
       dataStudents: [],
       loadingStudents: false,
+      loadingModal: false,
     };
   }
 
@@ -77,6 +79,40 @@ class TakeAttendance extends React.Component {
     });
   }
 
+  handleSubmit = (e) => {
+    this.setState({
+      loadingModal: true,
+    })    
+    this.props.form.validateFieldsAndScroll((err, values) => {
+      if (!err) {
+        console.log('Received values of form: ', values);
+        put(
+          ATTENDANCE_TAKE_ATTENDANCE,
+          values,
+          {},
+          {
+            Authorization:
+              "Bearer " + LocalStorageUtils.getItem(LOCAL_STORAGE_KEY.JWT)
+          })
+        .then(res => {
+          message.success("Success!");
+          this.setState({ 
+            loadingModal: false, 
+            visibleStudents: false,
+          });
+          
+        })
+        .catch(err =>{
+          message.error("ERROR!!!");
+          this.setState({ 
+            loadingModal: false, 
+          });
+        })
+      }
+    });
+  }
+
+
   render() {
 
     const { getFieldDecorator } = this.props.form;
@@ -118,14 +154,24 @@ class TakeAttendance extends React.Component {
                 <Button type="primary" onClick={this.getListStudents.bind(this, row.eventDetail)}>
                   List
                 </Button>
-                <Modal
-                  title="Take Attendance"
-                  style={{minWidth:800}}
-                  visible={this.state.visibleStudents === row.eventDetail ? true : false}
-                  onOk={this.handleOkStudents}
-                  onCancel={this.handleCancelStudents}
-                >
-                  <Form onSubmit={this.handleSubmit}>
+                <Form onSubmit={this.handleSubmit}>
+                  <Modal
+                    title="Take Attendance"
+                    style={{ minWidth: 800 }}
+                    visible={this.state.visibleStudents === row.eventDetail ? true : false}
+                    onOk={this.handleOkStudents}
+                    onCancel={this.handleCancelStudents}
+                    footer={[
+                      <Button key="back" onClick={this.handleCancel}>Return</Button>,
+                      <Button
+                        key="submit"
+                        type="primary"
+                        loading={this.state.loadingModal}
+                        onClick={this.handleSubmit}>
+                        Submit
+                      </Button>,
+                    ]}
+                  >
                     <Table dataSource={this.state.dataStudents}
                       loading={this.state.loadingStudents}
                       pagination={false}
@@ -133,7 +179,18 @@ class TakeAttendance extends React.Component {
                       <Column
                         title="AttendanceId"
                         key="attendanceId"
-                        dataIndex="attendanceId"
+                        render={row => (
+                          <Form.Item
+                            {...formItemLayout}
+                            style={{ margin: 0 }}
+                          >
+                            {getFieldDecorator('attendanceId', {
+                              initialValue: row.attendanceId,
+                            })(
+                              <div>{row.attendanceId}</div>
+                            )}
+                          </Form.Item>
+                        )}
                       />
                       <Column
                         title="StudentId"
@@ -147,7 +204,7 @@ class TakeAttendance extends React.Component {
                           <Form.Item
                             style={{ margin: 0 }}
                           >
-                            {getFieldDecorator(`presetn_${row.studentId}`, {
+                            {getFieldDecorator(`present`, {
                               initialValue: false,
                             })(
                               <Radio.Group>
@@ -162,12 +219,12 @@ class TakeAttendance extends React.Component {
                         title="Note"
                         key="note"
                         render={(row) => (
-                          <Form.Item 
-                            {...formItemLayout} 
-                            style={{ margin: 0 }} 
+                          <Form.Item
+                            {...formItemLayout}
+                            style={{ margin: 0 }}
                             label="Note"
                           >
-                            {getFieldDecorator('username', {
+                            {getFieldDecorator('note', {
                               initialValue: row.note,
                             })(
                               <Input placeholder="Input your note" />
@@ -176,8 +233,8 @@ class TakeAttendance extends React.Component {
                         )}
                       />
                     </Table>
-                  </Form>
-                </Modal>
+                  </Modal>
+                </Form>
               </div>
             )}
           />

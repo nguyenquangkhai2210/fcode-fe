@@ -22,6 +22,8 @@ export const EVENT_GET_STUDENTS_ATTENDANCE = BASE_URL + "/detail/";
 //Account
 export const ACCOUNT_GET_PROFILE = BASE_URL + "/account/";
 
+//Attendance
+export const ATTENDANCE_TAKE_ATTENDANCE = BASE_URL + "/attendance/take";
 
 
 
