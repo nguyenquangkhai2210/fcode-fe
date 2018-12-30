@@ -25,7 +25,6 @@ class Projects extends React.Component {
   }
 
   async componentDidMount() {
-    console.log(LocalStorageUtils.getItem(LOCAL_STORAGE_KEY.JWT));
     await get(
       EVENT_GET__BY_TYPE + "6",
       {},

@@ -1,6 +1,5 @@
 import React from "react";
 import {
-  BrowserRouter as Router,
   Route,
   Switch,
   Redirect
@@ -71,7 +70,6 @@ class Fulllayout extends React.Component {
     /* Theme Setting && Layout Options wiil be Change From Here                       */
     /*--------------------------------------------------------------------------------*/
     return (
-      <Router>
         <div
           id="main-wrapper"
           data-theme="light"
@@ -84,7 +82,7 @@ class Fulllayout extends React.Component {
           {/*--------------------------------------------------------------------------------*/}
           {/* Header                                                                         */}
           {/*--------------------------------------------------------------------------------*/}
-          <Header data={this.state} />
+          <Header data={this.state} {...this.props}/>
           {/*--------------------------------------------------------------------------------*/}
           {/* Sidebar                                                                        */}
           {/*--------------------------------------------------------------------------------*/}
@@ -98,12 +96,12 @@ class Fulllayout extends React.Component {
                 {ThemeRoutes.map((prop, key) => {
                   if (prop.redirect) {
                     return (
-                      <Redirect from={prop.path} to={prop.pathTo} key={key} />
+                      <Redirect from={prop.path} to={this.props.match.path + prop.pathTo} key={key} />
                     );
                   } else {
                     return (
                       <Route
-                        path={prop.path}
+                        path={this.props.match.path + prop.path}
                         component={prop.component}
                         key={key}
                       />
@@ -115,7 +113,6 @@ class Fulllayout extends React.Component {
             <Footer />
           </div>
         </div>
-      </Router>
     );
   }
 }

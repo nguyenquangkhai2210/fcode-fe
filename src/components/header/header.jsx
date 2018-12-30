@@ -45,7 +45,8 @@ class Header extends React.Component {
 	}
 
 	ViewFrofile = () => {
-		this.props.history.push('/admin/viewProfile');
+		let path = this.props.match.path.split('/');
+		this.props.history.push(`/${path[1]}/viewProfile`);
 	}
 
 	Logout = () =>{

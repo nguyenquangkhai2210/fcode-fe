@@ -64,6 +64,7 @@ class ViewProfile extends React.Component {
                     dayOfBirth: this.state.data.dayOfBirth.split("T")[0] + " " + this.state.data.dayOfBirth.split("T")[1].split(".")[0],
                 }
             })
+            console.log(this.state.data);
         }).catch(err => {
             console.log(ACCOUNT_GET_PROFILE + LOCAL_STORAGE_KEY.STUDENT_ID);
         })

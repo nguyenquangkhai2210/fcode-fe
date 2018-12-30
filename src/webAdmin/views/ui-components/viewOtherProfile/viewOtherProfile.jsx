@@ -46,8 +46,9 @@ class ViewProfile extends React.Component {
         this.setState({
             loading: true,
         })
+        let studentId = this.props.location.pathname.replace("/admin/listAccount/viewProfile/", "");
         await get(
-            ACCOUNT_GET_PROFILE + LocalStorageUtils.getItem(LOCAL_STORAGE_KEY.STUDENT_ID),
+            ACCOUNT_GET_PROFILE + studentId,
             {},
             {
                 Authorization:
@@ -115,7 +116,7 @@ class ViewProfile extends React.Component {
                     </Col>
                     <Col span={17}>
                         <Form className="formProfile" onSubmit={this.handleSubmit} layout="vertical">
-                            <Card title="My account">
+                            <Card title="Profile">
                                 <Card>
                                     <Meta
                                         description="USER INFORMATION"
