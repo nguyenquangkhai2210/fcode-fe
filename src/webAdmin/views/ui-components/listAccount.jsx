@@ -1,7 +1,7 @@
 import React from "react";
 import { get } from "../../../utils/ApiCaller";
 import {
-  EVENT_GET_ALL_ACCOUNT,
+  ACCOUNT__GET_ALL_ACCOUNT,
 } from "../../../utils/ApiEndpoint";
 import LocalStorageUtils, { LOCAL_STORAGE_KEY } from "../../../utils/LocalStorage";
 import { Card, Form, Table, Button } from "antd";
@@ -22,7 +22,7 @@ class ListAccount extends React.Component {
   async componentDidMount() {
     this.setState({ loading: true });
     await get(
-      EVENT_GET_ALL_ACCOUNT,
+      ACCOUNT__GET_ALL_ACCOUNT,
       {},
       {
         Authorization:

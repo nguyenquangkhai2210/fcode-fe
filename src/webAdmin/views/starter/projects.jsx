@@ -1,8 +1,10 @@
 import React from "react";
 import { get } from "../../../utils/ApiCaller";
-import { EVENT_GET__BY_TYPE, EVENT_PENDING } from "../../../utils/ApiEndpoint";
+import {
+	EVENT__GET_LIST,
+} from "../../../utils/ApiEndpoint";
 import LocalStorageUtils, { LOCAL_STORAGE_KEY } from "../../../utils/LocalStorage";
-import { message, Spin } from "antd";
+import { Spin } from "antd";
 import {
 	Card,
 	CardBody,
@@ -24,7 +26,7 @@ class Projects extends React.Component {
 		this.setState({
 			loading: true,
 		})
-		await get(EVENT_GET__BY_TYPE + "6",
+		await get(EVENT__GET_LIST + "6",
 			{},
 			{ 'Authorization': 'Bearer ' + LocalStorageUtils.getItem(LOCAL_STORAGE_KEY.JWT) })
 			.then(res => {
@@ -38,30 +40,12 @@ class Projects extends React.Component {
 			})
 	}
 
-	ViewRequestJoin = async (eventID) => {
-		await get(EVENT_PENDING + eventID,
-			{},
-			{ 'Authorization': 'Bearer ' + LocalStorageUtils.getItem(LOCAL_STORAGE_KEY.JWT) })
-			.then(res => {
-				if (res.status) {
-					this.props.history.push(`/admin/pending/${eventID}`);
-				}
-			}).catch((error) => {
-				message.error("Event not have peding request")
-			});
+	ViewRequestJoin = (eventID) => {
+		this.props.history.push(`/admin/pending/${eventID}`);
 	}
 
-	ViewAttendance = async () => {
-		await get(EVENT_GET__BY_TYPE + 3,
-			{},
-			{ 'Authorization': 'Bearer ' + LocalStorageUtils.getItem(LOCAL_STORAGE_KEY.JWT) })
-			.then(res => {
-				if (res.status) {
-					this.props.history.push(`/admin/attendance/`);
-				}
-			}).catch((error) => {
-				message.error("Event not have peding request")
-			});
+	ViewAttendance = () => {
+		this.props.history.push(`/admin/attendance/`);
 	}
 
 	render() {

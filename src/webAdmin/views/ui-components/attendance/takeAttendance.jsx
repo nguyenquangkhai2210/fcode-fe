@@ -1,9 +1,9 @@
 import React from "react";
 import { get, put } from "../../../../utils/ApiCaller";
 import {
-  EVENT_GET_DETAIL_BY_ID,
-  EVENT_GET_STUDENTS_ATTENDANCE,
-  ATTENDANCE_TAKE_ATTENDANCE
+  DETAIL__GET_LIST_ATTENDANCE,
+  DETAIL__GET_ALL_DETAIL,
+  ATTENDANCE__TAKE_ATTENDANCE
 } from "../../../../utils/ApiEndpoint";
 import LocalStorageUtils, { LOCAL_STORAGE_KEY } from "../../../../utils/LocalStorage";
 import { Card, Form, Table, DatePicker, Button, Modal, Radio, Input, message } from "antd";
@@ -33,7 +33,7 @@ class TakeAttendance extends React.Component {
     let url_Array = this.props.history.location.pathname.split("/");
     let eventId = url_Array[(url_Array.length) - 1];
     await get(
-      EVENT_GET_DETAIL_BY_ID + eventId,
+      DETAIL__GET_ALL_DETAIL + eventId,
       {},
       {
         Authorization:
@@ -52,7 +52,7 @@ class TakeAttendance extends React.Component {
       loadingStudents: true,
     })
     await get(
-      EVENT_GET_STUDENTS_ATTENDANCE + eventId,
+      DETAIL__GET_LIST_ATTENDANCE + eventId,
       {},
       {
         Authorization:
@@ -87,7 +87,7 @@ class TakeAttendance extends React.Component {
       if (!err) {
         console.log('Received values of form: ', values);
         put(
-          ATTENDANCE_TAKE_ATTENDANCE,
+          ATTENDANCE__TAKE_ATTENDANCE,
           values,
           {},
           {
@@ -162,7 +162,7 @@ class TakeAttendance extends React.Component {
                     onOk={this.handleOkStudents}
                     onCancel={this.handleCancelStudents}
                     footer={[
-                      <Button key="back" onClick={this.handleCancel}>Return</Button>,
+                      <Button key="back" onClick={this.handleCancelStudents}>Return</Button>,
                       <Button
                         key="submit"
                         type="primary"

@@ -1,7 +1,7 @@
 import React from 'react';
 import { get } from "../../../../utils/ApiCaller";
 import {
-    ACCOUNT_GET_PROFILE
+    ACCOUNT__GET_PROFILE
 } from "../../../../utils/ApiEndpoint";
 import LocalStorageUtils, { LOCAL_STORAGE_KEY } from "../../../../utils/LocalStorage";
 import moment from 'moment';
@@ -47,7 +47,7 @@ class ViewProfile extends React.Component {
             loading: true,
         })
         await get(
-            ACCOUNT_GET_PROFILE + LocalStorageUtils.getItem(LOCAL_STORAGE_KEY.STUDENT_ID),
+            ACCOUNT__GET_PROFILE + LocalStorageUtils.getItem(LOCAL_STORAGE_KEY.STUDENT_ID),
             {},
             {
                 Authorization:
@@ -65,7 +65,7 @@ class ViewProfile extends React.Component {
                 }
             })
         }).catch(err => {
-            console.log(ACCOUNT_GET_PROFILE + LOCAL_STORAGE_KEY.STUDENT_ID);
+            console.log(ACCOUNT__GET_PROFILE + LOCAL_STORAGE_KEY.STUDENT_ID);
         })
     }
 

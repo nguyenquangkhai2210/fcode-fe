@@ -1,29 +1,33 @@
 import { config } from "../configs/config";
 
 export const BASE_URL      = config.apis.base_url;
-export const AUTH_BASE_URL = BASE_URL + "/auth";
-export const API_BASE_URL  = BASE_URL + "/api/v1";
 
-// Authentication
+// Login
 export const AUTH__LOGIN   = BASE_URL + "/login";
-export const AUTH__SIGN_UP = AUTH_BASE_URL + "/signup";
 
 // Event
-export const EVENT_GET__BY_TYPE = BASE_URL + "/event/type/";
-export const EVENT_PENDING = BASE_URL + "/event/pending/";
-export const EVENT_APPROVE = BASE_URL + "/event/approve/";
-export const EVENT_REJECT = BASE_URL + "/event/reject/";
-export const EVENT_JOIN = BASE_URL + "/event/";
-export const EVENT_CREATE_DETAIL = BASE_URL + "/detail/";
-export const EVENT_GET_DETAIL_BY_ID = BASE_URL + "/detail/all/";
-export const EVENT_GET_ALL_ACCOUNT = BASE_URL + "/account";
-export const EVENT_GET_STUDENTS_ATTENDANCE = BASE_URL + "/detail/";
+export const EVENT__GET_LIST = BASE_URL + "/event/type/";
+export const EVENT__GET_LIST_PENDING = BASE_URL + "/event/pending/";
+export const EVENT__APPROVE = BASE_URL + "/event/approve/";
+export const EVENT__REJECT = BASE_URL + "/event/reject/";
+
+export const EVENT__JOIN = BASE_URL + "/event/";
 
 //Account
-export const ACCOUNT_GET_PROFILE = BASE_URL + "/account/";
+export const ACCOUNT__GET_PROFILE = BASE_URL + "/account/";
+export const ACCOUNT__GET_ALL_ACCOUNT = BASE_URL + "/account";
+
 
 //Attendance
-export const ATTENDANCE_TAKE_ATTENDANCE = BASE_URL + "/attendance/take";
+export const ATTENDANCE__TAKE_ATTENDANCE = BASE_URL + "/attendance/take";
+
+//Detail
+export const DETAIL__CREATE_DETAIL = BASE_URL + "/detail/";
+export const DETAIL__GET_ALL_DETAIL = BASE_URL + "/detail/all/";
+export const DETAIL__GET_LIST_ATTENDANCE = BASE_URL + "/detail/";
+
+
+
 
 
 

@@ -1,6 +1,9 @@
 import React from "react";
 import { get, post } from "../../../utils/ApiCaller";
-import { EVENT_GET__BY_TYPE, EVENT_JOIN } from "../../../utils/ApiEndpoint";
+import { 
+  EVENT__GET_LIST, 
+  EVENT__JOIN 
+} from "../../../utils/ApiEndpoint";
 import LocalStorageUtils, {
   LOCAL_STORAGE_KEY
 } from "../../../utils/LocalStorage";
@@ -26,7 +29,7 @@ class Projects extends React.Component {
 
   async componentDidMount() {
     await get(
-      EVENT_GET__BY_TYPE + "6",
+      EVENT__GET_LIST + "6",
       {},
       {
         Authorization:
@@ -46,7 +49,7 @@ class Projects extends React.Component {
     var studentID = LocalStorageUtils.getItem(LOCAL_STORAGE_KEY.STUDENT_ID);
     console.log(studentID);
     post(
-      EVENT_JOIN + eventId + "/" + studentID,
+      EVENT__JOIN + eventId + "/" + studentID,
       {},
       {},
       {

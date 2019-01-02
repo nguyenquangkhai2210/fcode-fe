@@ -1,8 +1,8 @@
 import React from "react";
 import { get, post } from "../../../../utils/ApiCaller";
 import {
-  EVENT_GET__BY_TYPE,
-  EVENT_CREATE_DETAIL,
+  EVENT__GET_LIST,
+  DETAIL__CREATE_DETAIL,
 } from "../../../../utils/ApiEndpoint";
 import LocalStorageUtils, { LOCAL_STORAGE_KEY } from "../../../../utils/LocalStorage";
 import { Card, Form, Table, Button, Modal, DatePicker, Input, Tooltip, Icon, message } from "antd";
@@ -33,7 +33,7 @@ class Attendance extends React.Component {
   async componentDidMount() {
     this.setState({ loading: true });
     await get(
-      EVENT_GET__BY_TYPE + 3,
+      EVENT__GET_LIST + 3,
       {},
       {
         Authorization:
@@ -74,7 +74,7 @@ class Attendance extends React.Component {
 
       let detailName = values.detailName;
       let date = values.date_time_picker;
-      post(EVENT_CREATE_DETAIL + eventId,
+      post(DETAIL__CREATE_DETAIL + eventId,
         {
           detailName,
           date
