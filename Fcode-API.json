@@ -1,0 +1,938 @@
+{
+	"_type": "export",
+	"__export_format": 3,
+	"__export_date": "2019-01-02T10:16:34.387Z",
+	"__export_source": "insomnia.desktop.app:v6.3.2",
+	"resources": [
+		{
+			"_id": "wrk_c2ddd29554764917a18489eb1a2598d0",
+			"created": 1544002348914,
+			"description": "",
+			"modified": 1544002348914,
+			"name": "Fcode API",
+			"parentId": null,
+			"_type": "workspace"
+		},
+		{
+			"_id": "env_ef2bde7474064b9c80f580bda3a4ea40",
+			"color": null,
+			"created": 1544002349007,
+			"data": {},
+			"isPrivate": false,
+			"metaSortKey": 1544002349008,
+			"modified": 1544027148350,
+			"name": "New Environment",
+			"parentId": "wrk_c2ddd29554764917a18489eb1a2598d0",
+			"_type": "environment"
+		},
+		{
+			"_id": "jar_38337d792c134cf8a8d866f509d3d73d",
+			"cookies": [
+				{
+					"creation": "2018-12-06T20:18:00.093Z",
+					"domain": "localhost",
+					"hostOnly": true,
+					"httpOnly": true,
+					"id": "3588049246752798",
+					"key": "JSESSIONID",
+					"lastAccessed": "2018-12-08T07:10:32.448Z",
+					"path": "/",
+					"value": "FFDE661EDDB7FD9B69A0CEFF5648654E"
+				}
+			],
+			"created": 1544002349021,
+			"modified": 1544253032448,
+			"name": "Default Jar",
+			"parentId": "wrk_c2ddd29554764917a18489eb1a2598d0",
+			"_type": "cookie_jar"
+		},
+		{
+			"_id": "fld_339f14d74296475c8fe129ebc21e9dfa",
+			"created": 1544165264039,
+			"description": "",
+			"environment": {},
+			"metaSortKey": -1544166054121,
+			"modified": 1544168579154,
+			"name": "1. Authencation",
+			"parentId": "wrk_c2ddd29554764917a18489eb1a2598d0",
+			"_type": "request_group"
+		},
+		{
+			"_id": "fld_4c1c8b15021a4866ae061f6e66184d62",
+			"created": 1544165272742,
+			"description": "",
+			"environment": {},
+			"metaSortKey": -1544166054108.5,
+			"modified": 1544168581994,
+			"name": "2. Account",
+			"parentId": "wrk_c2ddd29554764917a18489eb1a2598d0",
+			"_type": "request_group"
+		},
+		{
+			"_id": "fld_b7573eecdf1549ff9bab6aac935af037",
+			"created": 1544166054096,
+			"description": "",
+			"environment": {},
+			"metaSortKey": -1544166054096,
+			"modified": 1544166054096,
+			"name": "3. Event",
+			"parentId": "wrk_c2ddd29554764917a18489eb1a2598d0",
+			"_type": "request_group"
+		},
+		{
+			"_id": "fld_b0d457d4c1814f1a9e30fa4a26175a7b",
+			"created": 1544272059174,
+			"description": "",
+			"environment": {},
+			"metaSortKey": -1544272059175,
+			"modified": 1544272059174,
+			"name": "4. Attendance",
+			"parentId": "wrk_c2ddd29554764917a18489eb1a2598d0",
+			"_type": "request_group"
+		},
+		{
+			"_id": "fld_f9b450c0a13b4ec0ac4cc7737f7c5a6a",
+			"created": 1544272798856,
+			"description": "",
+			"environment": {},
+			"metaSortKey": -1544272798856,
+			"modified": 1544272798856,
+			"name": "5. Event Detail",
+			"parentId": "wrk_c2ddd29554764917a18489eb1a2598d0",
+			"_type": "request_group"
+		},
+		{
+			"_id": "fld_ab30aed526ce4752a543a195fe60705e",
+			"created": 1546418845665,
+			"description": "",
+			"environment": {},
+			"metaSortKey": -1546418845665,
+			"modified": 1546418845665,
+			"name": "6. Major",
+			"parentId": "wrk_c2ddd29554764917a18489eb1a2598d0",
+			"_type": "request_group"
+		},
+		{
+			"_id": "fld_6991ba5a70314ee3867b0a94cb5c2b7e",
+			"created": 1546419698809,
+			"description": "",
+			"environment": {},
+			"metaSortKey": -1546419698810,
+			"modified": 1546419698809,
+			"name": "7. Course",
+			"parentId": "wrk_c2ddd29554764917a18489eb1a2598d0",
+			"_type": "request_group"
+		},
+		{
+			"_id": "req_e6887bbe72734e918d5eb0b9ddf091ee",
+			"authentication": {
+				"prefix": "Bearer",
+				"token": "{{ JWT_ADMIN  }}",
+				"type": "bearer"
+			},
+			"body": {},
+			"created": 1544425581660,
+			"description": "",
+			"headers": [],
+			"isPrivate": false,
+			"metaSortKey": -1544425581660,
+			"method": "GET",
+			"modified": 1544425742430,
+			"name": "TEST",
+			"parameters": [],
+			"parentId": "wrk_c2ddd29554764917a18489eb1a2598d0",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ URL_API  }}/attendance/test",
+			"_type": "request"
+		},
+		{
+			"_id": "env_dde7e45d92f1448b940033bcb9ae17ae",
+			"color": "#e45075",
+			"created": 1544027150693,
+			"data": {
+				"JWT_ADMIN": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJTRTYzMzYyIiwiaXNBZG1pbiI6dHJ1ZSwiZXhwIjoxNTQ3MjgzMzc4fQ.dolZRpsqzd37wk15UZSR1Oa4fFxiwWUHa96sMq7VQizNckTrOovsykJC89Zag2xX3sxl9wK1LIEYH7ErEsKhBw",
+				"JWT_USER": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJTRTYyMzIxIiwiZXhwIjoxNTQ1MTE1MDgxfQ.Mdm1JnDqu1qXM9GkoYLcni4dHZaC6cIERHC8nfbX-iMTPxbMSOLmmEESWXE7ZOnLiE0VRocIEcfvCyBaUhnxfQ",
+				"URL_API": "localhost:8080"
+			},
+			"isPrivate": false,
+			"metaSortKey": 1544027150693,
+			"modified": 1546419397872,
+			"name": "Develop mode",
+			"parentId": "env_ef2bde7474064b9c80f580bda3a4ea40",
+			"_type": "environment"
+		},
+		{
+			"_id": "env_4494dd2f9ee54b08b7a0c7dcfaa28d93",
+			"color": "#3563ff",
+			"created": 1544284602381,
+			"data": {
+				"JWT_ADMIN": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJTRTYzMzYyIiwiaXNBZG1pbiI6dHJ1ZSwiZXhwIjoxNTQ2NDg2Njk3fQ.bOTAQp4XhL-4STOOl6_9EHJQyDVkPfz0hb-LTlr46Xs1qpTS2wa9kBlgGvbBtTucRRSRRIYgZIBEgrFRrzpuxQ",
+				"JWT_USER": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJTRTYyMzIxIiwiaXNBZG1pbiI6ZmFsc2UsImV4cCI6MTU0NTE4ODkxN30.FVqsMUBrx_Vgyhj6k8kGQzdw5wMHWuIgQ-Ro5dqOnE3W6HfNrZ6k16yubcUljMoHlXb1GKaHpy8etHuXakxTtw",
+				"URL_API": "api-fcode.herokuapp.com"
+			},
+			"isPrivate": false,
+			"metaSortKey": 1544284602381,
+			"modified": 1545622726251,
+			"name": "Production",
+			"parentId": "env_ef2bde7474064b9c80f580bda3a4ea40",
+			"_type": "environment"
+		},
+		{
+			"_id": "req_5b92f54aa83d4429a240740c2acc6e40",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/x-www-form-urlencoded",
+				"params": [
+					{
+						"id": "pair_865f0d8d8eb24f7383325b9286577182",
+						"name": "studentId",
+						"value": "SE63362"
+					},
+					{
+						"id": "pair_c6db2e8803024220baa81bff9869a640",
+						"name": "password",
+						"value": "123"
+					}
+				]
+			},
+			"created": 1544122726061,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_b3470210c931492eb51c4471af1ca77f",
+					"name": "Content-Type",
+					"value": "application/x-www-form-urlencoded"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1544122726062,
+			"method": "POST",
+			"modified": 1544378856333,
+			"name": "Login",
+			"parameters": [],
+			"parentId": "fld_339f14d74296475c8fe129ebc21e9dfa",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ URL_API  }}/login",
+			"_type": "request"
+		},
+		{
+			"_id": "req_29ed5464c3fb4de4b26a672512521a4d",
+			"authentication": {
+				"prefix": "Bearer",
+				"token": "{{ JWT_ADMIN  }}",
+				"type": "bearer"
+			},
+			"body": {},
+			"created": 1544027087740,
+			"description": "",
+			"headers": [],
+			"isPrivate": false,
+			"metaSortKey": -1544122765242.5,
+			"method": "GET",
+			"modified": 1544345765448,
+			"name": "Get Profile Account",
+			"parameters": [],
+			"parentId": "fld_4c1c8b15021a4866ae061f6e66184d62",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ URL_API  }}/account/SE63362",
+			"_type": "request"
+		},
+		{
+			"_id": "req_552d9a4101b446d485831bf8e1564f02",
+			"authentication": {},
+			"body": {
+				"mimeType": "multipart/form-data",
+				"params": []
+			},
+			"created": 1544027634733,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_7613b5031c9a4cf6b22c4bb6df558a1f",
+					"name": "Content-Type",
+					"value": "multipart/form-data"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1544122765230,
+			"method": "GET",
+			"modified": 1544253350904,
+			"name": "Search Like Name",
+			"parameters": [],
+			"parentId": "fld_4c1c8b15021a4866ae061f6e66184d62",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ URL_API  }}/account/name/th",
+			"_type": "request"
+		},
+		{
+			"_id": "req_7825854e7fe04967a6762028034499c8",
+			"authentication": {
+				"prefix": "Bearer",
+				"token": "{{ JWT_ADMIN  }}",
+				"type": "bearer"
+			},
+			"body": {},
+			"created": 1544028090907,
+			"description": "",
+			"headers": [],
+			"isPrivate": false,
+			"metaSortKey": -1544122765255,
+			"method": "GET",
+			"modified": 1544341530985,
+			"name": "Get All Account",
+			"parameters": [],
+			"parentId": "fld_4c1c8b15021a4866ae061f6e66184d62",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ URL_API  }}/account",
+			"_type": "request"
+		},
+		{
+			"_id": "req_172558b7d6f64f69817c43124f5e1491",
+			"authentication": {
+				"prefix": "Bearer",
+				"token": "{{ JWT_ADMIN  }}",
+				"type": "bearer"
+			},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"email\" : \"hungpt.se@gmail.com\",\n\t\"linkFb\" : \"0931231\",\n\t\"name\" : \"Thanh Hung\",\n\t\"phone\" : \"0943791739\",\n\t\"gender\" : true,\n\t\"address\" : \"HCM\",\n\t\"dayOfBirth\" : \"09-09-1998\",\n\t\"aboutMe\" : \"Nothing..\"\n}"
+			},
+			"created": 1544028384872,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_1f141fbe1b264040810830db8006e3ad",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1544122765205,
+			"method": "PUT",
+			"modified": 1546094936472,
+			"name": "Update Profile",
+			"parameters": [],
+			"parentId": "fld_4c1c8b15021a4866ae061f6e66184d62",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ URL_API  }}/account/SE63362",
+			"_type": "request"
+		},
+		{
+			"_id": "req_238ad503b4d54f0a92c3d21c9ef9b909",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"isActive\" : true\n}"
+			},
+			"created": 1544030342215,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_599eea88d5d9470582a7c7eb8266b454",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1544122765280,
+			"method": "PUT",
+			"modified": 1544214966898,
+			"name": "Change Status Account",
+			"parameters": [],
+			"parentId": "fld_4c1c8b15021a4866ae061f6e66184d62",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ URL_API  }}/account/SE63362/active",
+			"_type": "request"
+		},
+		{
+			"_id": "req_fb15264274914c61a654905f092bc2d9",
+			"authentication": {},
+			"body": {},
+			"created": 1544031486092,
+			"description": "",
+			"headers": [],
+			"isPrivate": false,
+			"metaSortKey": -1544122765305,
+			"method": "GET",
+			"modified": 1544248512668,
+			"name": "Get List Not New Commer",
+			"parameters": [],
+			"parentId": "fld_4c1c8b15021a4866ae061f6e66184d62",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ URL_API  }}/account/notNew",
+			"_type": "request"
+		},
+		{
+			"_id": "req_a535ff8ee44a4e4385b0337f3e58cb67",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"studentId\" : \"SE140122\",\n\t\"password\" : \"123456\",\n\t\"name\" : \"CMG\",\n\t\"course\" : 4,\n\t\"major\": 1,\n\t\"gender\": true,\n\t\"email\" : \"abc@gmail.com\"\n}"
+			},
+			"created": 1544169117804,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_47a273bdbd144a81aa816ce1ef75bbd8",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1544169117804,
+			"method": "POST",
+			"modified": 1545151706208,
+			"name": "Create Account",
+			"parameters": [],
+			"parentId": "fld_4c1c8b15021a4866ae061f6e66184d62",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ URL_API  }}/account/signUp",
+			"_type": "request"
+		},
+		{
+			"_id": "req_dcc5ba1b825e44349b220e67a3f45e59",
+			"authentication": {
+				"prefix": "Bearer",
+				"token": "{{ JWT_ADMIN  }}",
+				"type": "bearer"
+			},
+			"body": {},
+			"created": 1544166060922,
+			"description": "",
+			"headers": [],
+			"isPrivate": false,
+			"metaSortKey": -1544122794512.25,
+			"method": "GET",
+			"modified": 1544428095258,
+			"name": "Get All Event",
+			"parameters": [],
+			"parentId": "fld_b7573eecdf1549ff9bab6aac935af037",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ URL_API  }}/event",
+			"_type": "request"
+		},
+		{
+			"_id": "req_cad3092e327448acbf0efb7889a97ab1",
+			"authentication": {
+				"prefix": "Bearer",
+				"token": "{{ JWT_ADMIN  }}",
+				"type": "bearer"
+			},
+			"body": {},
+			"created": 1544166193383,
+			"description": "",
+			"headers": [],
+			"isPrivate": false,
+			"metaSortKey": -1544122794562.25,
+			"method": "GET",
+			"modified": 1544975981432,
+			"name": "Get A Event",
+			"parameters": [],
+			"parentId": "fld_b7573eecdf1549ff9bab6aac935af037",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ URL_API  }}/event/3050",
+			"_type": "request"
+		},
+		{
+			"_id": "req_427c103a19d542268bdbc02ae1fd94de",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{ \n\t\"eventId\": 1029,\n  \"eventName\": \"PRJ321 - Java Web Application\",\n  \"location\": \"FPT University HCM\",\n  \"description\": \"<h1>Title</h1><p>The text example</p>\",\n  \"banner\": \"event.png\",\n  \"dateBegin\": \"2018-10-25T17:00:00.000+0000\",\n  \"dateEnd\": \"2018-10-28T17:00:00.000+0000\",\n  \"dateCreated\": \"2018-10-26T19:23:27.843+0000\",\n  \"manageBy\": \"SE63362\",\n  \"type\" : 3,\n  \"sign\": true,\n  \"publish\": false\n}"
+			},
+			"created": 1544168596727,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_376bd147a5c549219132e2fdac33fbc7",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1544168596727,
+			"method": "POST",
+			"modified": 1544975902225,
+			"name": "Create Event",
+			"parameters": [],
+			"parentId": "fld_b7573eecdf1549ff9bab6aac935af037",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ URL_API  }}/event",
+			"_type": "request"
+		},
+		{
+			"_id": "req_0abf258f878549d79773c1f20145dbaa",
+			"authentication": {
+				"prefix": "Bearer",
+				"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJTRTYzMzYyIiwiZXhwIjoxNTQ1MDgwMTk2fQ.dhPtuAWesGypovyj3UCRS9M0CydMvzpj5By6Z9GlKr5aK7IudgQtvDqiAciR_Cq4xn4BmO2dBMsVcvWUjMo1kg",
+				"type": "bearer"
+			},
+			"body": {},
+			"created": 1544196598285,
+			"description": "",
+			"headers": [],
+			"isPrivate": false,
+			"metaSortKey": -1544196598285,
+			"method": "GET",
+			"modified": 1544381468830,
+			"name": "Get Publish Event",
+			"parameters": [],
+			"parentId": "fld_b7573eecdf1549ff9bab6aac935af037",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ URL_API  }}/event/publish",
+			"_type": "request"
+		},
+		{
+			"_id": "req_fca6dd5a0db644e69630746cfa1eb3c9",
+			"authentication": {
+				"prefix": "Bearer",
+				"token": "{{ JWT_ADMIN  }}",
+				"type": "bearer"
+			},
+			"body": {},
+			"created": 1544279921681,
+			"description": "",
+			"headers": [],
+			"isPrivate": false,
+			"metaSortKey": -1544196598335,
+			"method": "POST",
+			"modified": 1544786645440,
+			"name": "Join Event",
+			"parameters": [],
+			"parentId": "fld_b7573eecdf1549ff9bab6aac935af037",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ URL_API  }}/event/3054/SE63362",
+			"_type": "request"
+		},
+		{
+			"_id": "req_80ad871d9a26455cb2edc9c232147007",
+			"authentication": {
+				"prefix": "Bearer",
+				"token": "{{ JWT_ADMIN  }}",
+				"type": "bearer"
+			},
+			"body": {},
+			"created": 1544280512553,
+			"description": "",
+			"headers": [],
+			"isPrivate": false,
+			"metaSortKey": -1544280512553,
+			"method": "GET",
+			"modified": 1544975201823,
+			"name": "Pending Request Join",
+			"parameters": [],
+			"parentId": "fld_b7573eecdf1549ff9bab6aac935af037",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ URL_API  }}/event/pending/3054",
+			"_type": "request"
+		},
+		{
+			"_id": "req_260050bc8e8546e6b2c8b741bbffc3c2",
+			"authentication": {
+				"prefix": "Bearer",
+				"token": "{{ JWT_ADMIN  }}",
+				"type": "bearer"
+			},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"listEvent\" : [\"3050\",\"3051\"] \n}\n\t\n"
+			},
+			"created": 1544280870767,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_66f9487969be4f3f9ac135daa28b2d97",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1544280870767,
+			"method": "PUT",
+			"modified": 1544975987634,
+			"name": "Approve Join Event",
+			"parameters": [],
+			"parentId": "fld_b7573eecdf1549ff9bab6aac935af037",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ URL_API  }}/event/approve/66",
+			"_type": "request"
+		},
+		{
+			"_id": "req_194870d07eb045cb974a7b7b560bc3d7",
+			"authentication": {
+				"prefix": "Bearer",
+				"token": "{{ JWT_ADMIN  }}",
+				"type": "bearer"
+			},
+			"body": {},
+			"created": 1544281133191,
+			"description": "",
+			"headers": [],
+			"isPrivate": false,
+			"metaSortKey": -1544280691660,
+			"method": "PUT",
+			"modified": 1544777460686,
+			"name": "Reject Join Event",
+			"parameters": [],
+			"parentId": "fld_b7573eecdf1549ff9bab6aac935af037",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ URL_API  }}/event/reject/3054/SE63362",
+			"_type": "request"
+		},
+		{
+			"_id": "req_6ec4783b3e7c47b8989517bd6b615285",
+			"authentication": {
+				"prefix": "Bearer",
+				"token": "{{ JWT_ADMIN  }}",
+				"type": "bearer"
+			},
+			"body": {},
+			"created": 1544515582419,
+			"description": "",
+			"headers": [],
+			"isPrivate": false,
+			"metaSortKey": -1544280870817,
+			"method": "GET",
+			"modified": 1544975988541,
+			"name": "Event By Type",
+			"parameters": [],
+			"parentId": "fld_b7573eecdf1549ff9bab6aac935af037",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ URL_API  }}/event/type/6",
+			"_type": "request"
+		},
+		{
+			"_id": "req_a9936442e61e49f09cee83ff1ed8f8e6",
+			"authentication": {
+				"prefix": "Bearer",
+				"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJTRTYzMzYyIiwiaXNBZG1pbiI6ZmFsc2UsImV4cCI6MTU0NTEzNjE5NH0.UgZTG1635LW3fUu7Js3T9ucP53x8utoKLOiX8iaPj43zbjLtUq2vnd2dcJK4AM_9TcqBaXPTPUXVri0H_yf1ig",
+				"type": "bearer"
+			},
+			"body": {},
+			"created": 1544272076440,
+			"description": "",
+			"headers": [],
+			"isPrivate": false,
+			"metaSortKey": -1544272076440,
+			"method": "GET",
+			"modified": 1545152836772,
+			"name": "Get Attendance By Student",
+			"parameters": [],
+			"parentId": "fld_b0d457d4c1814f1a9e30fa4a26175a7b",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ URL_API  }}/attendance/SE",
+			"_type": "request"
+		},
+		{
+			"_id": "req_d898db29d99347b3a88be2076c6f802e",
+			"authentication": {
+				"prefix": "Bearer",
+				"token": "{{ JWT_ADMIN  }}",
+				"type": "bearer"
+			},
+			"body": {
+				"mimeType": "application/json",
+				"text": "[\n  {\n    \"attendanceId\": 2052,\n    \"note\": \"Taked\",\n    \"present\": false\n  }\n]"
+			},
+			"created": 1546080011272,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_b44b5c75ecb34f5b8c0d885571999a58",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1546080011272,
+			"method": "PUT",
+			"modified": 1546082093419,
+			"name": "Take Attendance",
+			"parameters": [],
+			"parentId": "fld_b0d457d4c1814f1a9e30fa4a26175a7b",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ URL_API  }}/attendance/take",
+			"_type": "request"
+		},
+		{
+			"_id": "req_3b89893b6550412f898c7909475bff9d",
+			"authentication": {
+				"prefix": "Bearer",
+				"token": "{{ JWT_ADMIN  }}",
+				"type": "bearer"
+			},
+			"body": {},
+			"created": 1544272809058,
+			"description": "",
+			"headers": [],
+			"isPrivate": false,
+			"metaSortKey": -1544272809058,
+			"method": "GET",
+			"modified": 1545153152435,
+			"name": "Get List Attendance By Event Detail",
+			"parameters": [],
+			"parentId": "fld_f9b450c0a13b4ec0ac4cc7737f7c5a6a",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ URL_API  }}/detail/2046",
+			"_type": "request"
+		},
+		{
+			"_id": "req_583d67e8a46847c1b19c3f5184480f7d",
+			"authentication": {
+				"prefix": "Bearer",
+				"token": "{{ JWT_ADMIN  }}",
+				"type": "bearer"
+			},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"detailName\" : \"Slot 2 - Hello World\",\n\t\"date\" : \"2018-12-18 17:00:00\"\n}"
+			},
+			"created": 1544279131066,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_65e7ad592c944b2086cbb156a7799613",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1544279131066,
+			"method": "POST",
+			"modified": 1545152949493,
+			"name": "Create Event Detail",
+			"parameters": [],
+			"parentId": "fld_f9b450c0a13b4ec0ac4cc7737f7c5a6a",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ URL_API  }}/detail/3050",
+			"_type": "request"
+		},
+		{
+			"_id": "req_d1fb87cd76db4c369e5bbab96da5902c",
+			"authentication": {
+				"prefix": "Bearer",
+				"token": "{{ JWT_ADMIN  }}",
+				"type": "bearer"
+			},
+			"body": {},
+			"created": 1545152394814,
+			"description": "",
+			"headers": [],
+			"isPrivate": false,
+			"metaSortKey": -1545152394814,
+			"method": "GET",
+			"modified": 1545622711345,
+			"name": "GET All Event Detail By Event ID",
+			"parameters": [],
+			"parentId": "fld_f9b450c0a13b4ec0ac4cc7737f7c5a6a",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ URL_API  }}/detail/all/3050",
+			"_type": "request"
+		},
+		{
+			"_id": "req_5a37321e27374f70a1514412a114dd20",
+			"authentication": {
+				"prefix": "Bearer",
+				"token": "{{ JWT_ADMIN  }}",
+				"type": "bearer"
+			},
+			"body": {},
+			"created": 1546418849575,
+			"description": "",
+			"headers": [],
+			"isPrivate": false,
+			"metaSortKey": -1546418849575,
+			"method": "GET",
+			"modified": 1546419720704,
+			"name": "Get All Major",
+			"parameters": [],
+			"parentId": "fld_ab30aed526ce4752a543a195fe60705e",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ URL_API  }}/major",
+			"_type": "request"
+		},
+		{
+			"_id": "req_98771b770cb3451cad40416d3891785f",
+			"authentication": {
+				"prefix": "Bearer",
+				"token": "{{ JWT_ADMIN  }}",
+				"type": "bearer"
+			},
+			"body": {},
+			"created": 1546419679907,
+			"description": "",
+			"headers": [],
+			"isPrivate": false,
+			"metaSortKey": -1546249430423.5,
+			"method": "GET",
+			"modified": 1546419725230,
+			"name": "Get All Course",
+			"parameters": [],
+			"parentId": "fld_6991ba5a70314ee3867b0a94cb5c2b7e",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ URL_API  }}/course",
+			"_type": "request"
+		},
+		{
+			"_id": "req_aa5962fe746d47c3a195ec0ace514b90",
+			"authentication": {
+				"prefix": "Bearer",
+				"token": "{{ JWT_ADMIN  }}",
+				"type": "bearer"
+			},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"name\" : \"New Course\"\n}"
+			},
+			"created": 1546420790810,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_57dc47ddd7b84baca6dff2e34e96a7cd",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1546164720847.75,
+			"method": "POST",
+			"modified": 1546420902305,
+			"name": "Create Course",
+			"parameters": [],
+			"parentId": "fld_6991ba5a70314ee3867b0a94cb5c2b7e",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ URL_API  }}/course",
+			"_type": "request"
+		}
+	]
+}
