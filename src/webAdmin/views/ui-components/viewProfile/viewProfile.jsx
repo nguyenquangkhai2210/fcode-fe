@@ -8,7 +8,7 @@ import moment from 'moment';
 import './viewProfile.css';
 
 import {
-    Form, Input, Radio, Icon, DatePicker, Select, Row, Col, Card, Avatar, Spin, Button
+    Form, Input, Radio, Icon, DatePicker, Select, Row, Col, Card, Avatar, Spin, Button, Modal
 } from 'antd';
 
 const { Option } = Select;
@@ -22,12 +22,14 @@ class ViewProfile extends React.Component {
         this.state = {
             data: {},
             loading: false,
+            visibleModalInfo: false,
+            loadingModalInfo: false,
         }
     }
     handleSubmit = (e) => {
         e.preventDefault();
-
-        this.props.form.validateFields((err, fieldsValue) => {
+        let listParam = ['email', 'name', 'gender', 'phone', 'dayOfBirth', 'address', 'linkFb']
+        this.props.form.validateFields(listParam, (err, fieldsValue) => {
             if (err) {
                 return;
             }
@@ -69,6 +71,32 @@ class ViewProfile extends React.Component {
         })
     }
 
+    handleEdit = () => {
+        this.setState({
+            visibleModalInfo: true,
+        });
+    }
+
+    handleSubmitModal = (e) => {
+        e.preventDefault();
+        this.props.form.validateFields(['aboutMe'], (err, values) => {
+            if(!err){
+                console.log('Received values of form: ', values);
+            }
+        });
+    }
+
+    handleOk = () => {
+        this.setState({ loadingModalInfo: true });
+        setTimeout(() => {
+            this.setState({ loadingModalInfo: false, visibleModalInfo: false });
+        }, 3000);
+    }
+
+    handleCancel = () => {
+        this.setState({ visibleModalInfo: false });
+    }
+
     render() {
         const config = {
             rules: [{ type: 'object', required: true, message: 'Please select time!' }],
@@ -97,6 +125,7 @@ class ViewProfile extends React.Component {
             </Select>
         );
 
+
         return (
             <Spin spinning={this.state.loading}>
 
@@ -105,16 +134,41 @@ class ViewProfile extends React.Component {
                         <Card
                             style={{ width: 300 }}
                             cover={<img alt="example" src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png" />}
-                            actions={[<Icon type="edit" />, <Icon type="lock" />]}
+                            actions={[<Icon type="edit" onClick={this.handleEdit} />, <Icon type="lock" />]}
                         >
                             <Meta
                                 avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
                                 title={this.state.data.name}
+                                description={this.state.data.aboutMe}
                             />
                         </Card>
+
+                        <Form layout="inline" onSubmit={this.handleSubmitModal.bind(this)}>
+                            <Modal
+                                visible={this.state.visibleModalInfo}
+                                title="Update Info"
+                                onCancel={this.handleCancel}
+                                footer={[
+                                    <Button key="back" onClick={this.handleCancel}>Return</Button>,
+                                    <Button key="submit" type="primary" loading={this.state.loadingModalInfo} onClick={this.handleSubmitModal.bind(this)}>
+                                        Submit
+                                    </Button>,
+                                ]}
+                            >
+                                <Form.Item
+                                    {...formItemLayout}
+                                    label="About me"
+                                >
+                                    {getFieldDecorator('aboutMe')(
+                                        <TextArea rows={3} />
+                                    )}
+                                </Form.Item>
+                            </Modal>
+                        </Form>
+
                     </Col>
                     <Col span={17}>
-                        <Form className="formProfile" onSubmit={this.handleSubmit} layout="vertical">
+                        <Form className="formProfile" onSubmit={this.handleSubmit.bind(this)} layout="vertical">
                             <Card title="My account">
                                 <Card>
                                     <Meta
@@ -287,33 +341,13 @@ class ViewProfile extends React.Component {
                                         </Col>
                                     </Row>
                                 </Card>
-                                <div style={{ width: "100%", border: "1px solid #e8e8e8" }}></div>
-                                <Card>
-                                    <Meta
-                                        description="ABUT ME"
-                                        {...metaLayout}
-                                    />
-                                    <Row>
-                                        <Col span={24}>
-                                            <Form.Item
-                                                {...formItemLayout}
-                                                label={"About me"}
-                                            >
-                                                {getFieldDecorator('address', {
-                                                    initialValue: this.state.data.aboutMe,
-                                                })(
-                                                    <TextArea rows={5} />
-                                                )}
-                                            </Form.Item>
-                                        </Col>
-                                    </Row>
-                                </Card>
                                 <Form.Item
-                                    style={{textAlign:"center"}}
+                                    style={{ textAlign: "center" }}
                                 >
                                     <Button
                                         type="primary"
-                                        htmlType="submit"
+                                        key="submit"
+                                        onClick={this.handleSubmit.bind(this)}
                                     >
                                         Save profile
                                     </Button>

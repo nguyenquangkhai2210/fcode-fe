@@ -111,6 +111,7 @@ class ViewProfile extends React.Component {
                             <Meta
                                 avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
                                 title={this.state.data.name}
+                                description={this.state.data.aboutMe}
                             />
                         </Card>
                     </Col>

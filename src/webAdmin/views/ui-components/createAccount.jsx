@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {
-	Form, Input, Radio, Button, InputNumber, Card, Row, Col
+	Form, Input, Radio, Button, InputNumber, Card, Row, Col, Modal
 } from 'antd';
 
 const FormItem = Form.Item;
@@ -11,11 +11,14 @@ class CreateAccount extends React.Component {
 	state = {
 		confirmDirty: false,
 		autoCompleteResult: [],
+		visible: false,
+		loading: false,
 	};
 
 	handleSubmit = (e) => {
 		e.preventDefault();
-		this.props.form.validateFieldsAndScroll((err, values) => {
+		let listParam = ['name', 'confirm', 'course', 'major', 'gender', 'password', 'studentId']
+		this.props.form.validateFieldsAndScroll(listParam, (err, values) => {
 			if (!err) {
 				console.log('Received values of form: ', values);
 			}
@@ -44,6 +47,27 @@ class CreateAccount extends React.Component {
 		callback();
 	}
 
+	handleSubmitCourse = (e) => {
+		e.preventDefault();
+		this.props.form.validateFields(['newCourseName'], (err, values) => {
+			if (!err) {
+				console.log(values);
+			}
+		})
+	}
+
+	handleCancel = () => {
+		this.setState({
+			visible: false,
+		})
+	}
+
+	showModal = () => {
+		this.setState({
+			visible: true,
+		})
+	}
+
 	render() {
 		const { getFieldDecorator } = this.props.form;
 		const formItemLayout = {
@@ -70,10 +94,40 @@ class CreateAccount extends React.Component {
 		};
 
 		return (
-			<Card title="Create account" bordered={false} style={{ width: "100%" }}>
+			<Card title="Create account"
+				bordered={false}
+				style={{ width: "100%" }}
+				extra={<Button type="primary" onClick={this.showModal}>More course</Button>}
+			>
+				<Form onSubmit={this.handleSubmitCourse.bind(this)}>
+					<Modal
+						title="Add course"
+						visible={this.state.visible}
+						onCancel={this.handleCancel}
+						footer={[
+							<Button key="back" onClick={this.handleCancel}>Return</Button>,
+							<Button key="submit" type="primary" loading={this.state.loading} onClick={this.handleSubmitCourse.bind(this)}>
+								Submit
+							</Button>,
+						]}
+					>
+						<Form.Item
+							label="Course name"
+						>
+							{
+								getFieldDecorator('newCourseName', {
+									rules: [{ required: true, message: 'Please input course name!', whitespace: true }],
+								})(
+									<Input />
+								)
+							}
+						</Form.Item>
+					</Modal>
+				</Form>
+
 				<Row>
 					<Col span={12} offset={6}>
-						<Form onSubmit={this.handleSubmit}>
+						<Form onSubmit={this.handleSubmit.bind(this)}>
 							<FormItem
 								{...formItemLayout}
 								label="StudentID"
@@ -116,7 +170,7 @@ class CreateAccount extends React.Component {
 								{...formItemLayout}
 								label="Name"
 							>
-								{getFieldDecorator('Name', {
+								{getFieldDecorator('name', {
 									rules: [{ required: true, message: 'Please input your name!', whitespace: true }],
 								})(
 									<Input />
