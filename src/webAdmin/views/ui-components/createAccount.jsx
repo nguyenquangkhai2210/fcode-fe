@@ -1,19 +1,54 @@
 import React from 'react';
-
+import { get, post } from '../../../utils/ApiCaller';
 import {
-	Form, Input, Radio, Button, InputNumber, Card, Row, Col, Modal
+	COURSE__GET_ALL_COURSE,
+	COURSE__CREATE_COURSE,
+	MAJOR__GET_ALL_MAJOR, 
+	ACCOUNT__CREATE_ACCOUNT, 
+} from '../../../utils/ApiEndpoint';
+import LocalStorageUtils, { LOCAL_STORAGE_KEY } from '../../../utils/LocalStorage';
+import {
+	Form, Input, Radio, Button, Card, Row, Col, Modal, Select, message
 } from 'antd';
 
 const FormItem = Form.Item;
 const RadioGroup = Radio.Group;
+const { Option } = Select;
 
 class CreateAccount extends React.Component {
 	state = {
 		confirmDirty: false,
-		autoCompleteResult: [],
+		dataCourse: [],
+		dataMajor: [], 
 		visible: false,
 		loading: false,
 	};
+
+	async componentDidMount() {
+		await get(COURSE__GET_ALL_COURSE,
+			{},
+			{
+				Authorization:
+					"Bearer " + LocalStorageUtils.getItem(LOCAL_STORAGE_KEY.JWT)
+			})
+			.then(res => {
+				this.setState({
+					dataCourse: res.data,
+				})
+			})
+
+		await get(MAJOR__GET_ALL_MAJOR, 
+			{},
+			{
+				Authorization:
+					"Bearer " + LocalStorageUtils.getItem(LOCAL_STORAGE_KEY.JWT)
+			})
+			.then( res => {
+				this.setState({
+					dataMajor: res.data,
+				})
+			})
+	}
 
 	handleSubmit = (e) => {
 		e.preventDefault();
@@ -21,6 +56,19 @@ class CreateAccount extends React.Component {
 		this.props.form.validateFieldsAndScroll(listParam, (err, values) => {
 			if (!err) {
 				console.log('Received values of form: ', values);
+				post(ACCOUNT__CREATE_ACCOUNT, 
+					values,
+					{},
+					{
+						Authorization: 
+							"Bearer: " + LocalStorageUtils.getItem(LOCAL_STORAGE_KEY.JWT)
+					})
+					.then( res => {
+						message.success("Finish");
+					})
+					.catch ( err => {
+						message.error("Can't create");
+					})
 			}
 		});
 	}
@@ -206,7 +254,11 @@ class CreateAccount extends React.Component {
 								label="Course"
 							>
 								{getFieldDecorator('course', { initialValue: 1 })(
-									<InputNumber min={1} max={20} />
+									<Select>
+										{this.state.dataCourse.map((course) => (
+											<Option key={course.courseId} value={course.courseId}>{course.courseName}</Option>
+										))}
+									</Select>
 								)}
 							</FormItem>
 							<FormItem
@@ -214,7 +266,11 @@ class CreateAccount extends React.Component {
 								label="Major"
 							>
 								{getFieldDecorator('major', { initialValue: 1 })(
-									<InputNumber min={1} max={20} />
+									<Select>
+										{this.state.dataMajor.map((major) => (
+											<Option key={major.majorId} value={major.majorId}>{major.majorName}</Option>
+										))}
+									</Select>
 								)}
 							</FormItem>
 

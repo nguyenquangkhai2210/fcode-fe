@@ -17,7 +17,7 @@ export const EVENT__JOIN = BASE_URL + "/event/";
 export const ACCOUNT__GET_PROFILE = BASE_URL + "/account/";
 export const ACCOUNT__GET_ALL_ACCOUNT = BASE_URL + "/account";
 export const ACCOUNT__UPDATE_PROFILE = BASE_URL + "/account/";
-
+export const ACCOUNT__CREATE_ACCOUNT = BASE_URL + "/account/signUp";
 
 //Attendance
 export const ATTENDANCE__TAKE_ATTENDANCE = BASE_URL + "/attendance/take";
@@ -26,6 +26,13 @@ export const ATTENDANCE__TAKE_ATTENDANCE = BASE_URL + "/attendance/take";
 export const DETAIL__CREATE_DETAIL = BASE_URL + "/detail/";
 export const DETAIL__GET_ALL_DETAIL = BASE_URL + "/detail/all/";
 export const DETAIL__GET_LIST_ATTENDANCE = BASE_URL + "/detail/";
+
+//Course 
+export const COURSE__GET_ALL_COURSE = BASE_URL + "/course";
+export const COURSE__CREATE_COURSE = BASE_URL + "/course";
+
+//Major
+export const MAJOR__GET_ALL_MAJOR = BASE_URL + "/major";
 
 
 
