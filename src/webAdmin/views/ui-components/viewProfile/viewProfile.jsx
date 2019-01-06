@@ -1,14 +1,15 @@
 import React from 'react';
-import { get } from "../../../../utils/ApiCaller";
+import { get, put } from "../../../../utils/ApiCaller";
 import {
-    ACCOUNT__GET_PROFILE
+    ACCOUNT__GET_PROFILE, 
+    ACCOUNT__UPDATE_PROFILE, 
 } from "../../../../utils/ApiEndpoint";
 import LocalStorageUtils, { LOCAL_STORAGE_KEY } from "../../../../utils/LocalStorage";
 import moment from 'moment';
 import './viewProfile.css';
 
 import {
-    Form, Input, Radio, Icon, DatePicker, Select, Row, Col, Card, Avatar, Spin, Button, Modal
+    Form, Input, Radio, Icon, DatePicker, Select, Row, Col, Card, Avatar, Spin, Button, Modal, message
 } from 'antd';
 
 const { Option } = Select;
@@ -26,10 +27,11 @@ class ViewProfile extends React.Component {
             loadingModalInfo: false,
         }
     }
-    handleSubmit = (e) => {
+
+    handleSubmit = async (e) => {
         e.preventDefault();
         let listParam = ['email', 'name', 'gender', 'phone', 'dayOfBirth', 'address', 'linkFb']
-        this.props.form.validateFields(listParam, (err, fieldsValue) => {
+        await this.props.form.validateFields(listParam, (err, fieldsValue) => {
             if (err) {
                 return;
             }
@@ -41,6 +43,20 @@ class ViewProfile extends React.Component {
 
             };
             console.log('Received values of form: ', values);
+            
+            put(ACCOUNT__UPDATE_PROFILE, 
+                values,
+                {},
+                {
+                    Authorization: 
+                        "Bearer " + LocalStorageUtils.getItem(LOCAL_STORAGE_KEY.JWT)
+                })
+                .then( res => {
+                    message.success("Finish");
+                })
+                .catch( err => {
+                    message.error("Cant'n create");
+                })
         });
     }
 
@@ -123,9 +139,8 @@ class ViewProfile extends React.Component {
                 <Option value="86">+86</Option>
                 <Option value="87">+87</Option>
             </Select>
-        );
-
-
+				);
+				
         return (
             <Spin spinning={this.state.loading}>
 

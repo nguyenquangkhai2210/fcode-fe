@@ -16,6 +16,7 @@ export const EVENT__JOIN = BASE_URL + "/event/";
 //Account
 export const ACCOUNT__GET_PROFILE = BASE_URL + "/account/";
 export const ACCOUNT__GET_ALL_ACCOUNT = BASE_URL + "/account";
+export const ACCOUNT__UPDATE_PROFILE = BASE_URL + "/account/";
 
 
 //Attendance
